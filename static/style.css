@@ -1,0 +1,175 @@
+:root {
+  --color-accent: oklch(65% 50% 0);
+  --border-color: oklch(50% 10% 200 / 40%);
+}
+
+html {
+  /* Set the base font size to 16px */
+  color-scheme: light;
+}
+
+body {
+  /* Set line height to 1.5 times the font size
+     and use the OS's UI font as the website font
+   */
+  font: 100%/1.5 system-ui;
+  max-width: 100ch;
+  margin-inline: auto;
+  padding: 1px;
+  background-color: canvas;
+  color: canvastext;
+  accent-color: var(--color-accent);
+}
+
+ul {
+  display: contents;
+}
+
+nav {
+  display: flex;
+  margin-bottom: 1em;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+  justify-content: center;
+  --border-color: oklch(50% 10% 200 / 40%);
+}
+
+li {
+  display: contents;
+  list-style: none;
+}
+
+a {
+  flex: 1; /* Make each <a> take equal space */
+  text-decoration: none; /* Remove underline */
+  color: inherit; /* Inherit color from parent */
+  padding: 0.5em; /* Add some padding for better spacing */
+  text-align: center;
+}
+a.current {
+  font-weight: bold; /* Style the current page link differently */
+  padding-bottom: 0.1em;
+  border-bottom: 0.4em solid var(--border-color);
+  background-color: color-mix(in oklch, var(--color-accent), canvas 85%); /* Optional: highlight current page */
+}
+a:hover {
+  border-bottom: 0.4em solid var(--color-accent);
+  padding-bottom: 0.1em;
+}
+
+
+/* Form styling */
+form {
+  margin: 2em 0;
+  max-width: 40em;
+}
+
+label {
+  display: block;
+  margin-block: 1em 0.5em;
+  font-weight: bold;
+}
+
+input, 
+textarea, 
+button {
+  font: inherit; /* Use the same font as the rest of the page */
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.5em;
+  border: 1px solid oklch(80% 3% 200);
+  border-radius: 0.25em;
+}
+
+textarea {
+  min-height: 8em;
+  resize: vertical;
+}
+
+button {
+  margin-top: 1.5em;
+  background-color:  oklch(80% 3% 200);
+  color: white;
+  border: none;
+  padding: 0.75em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+/* Add this new rule to prevent images from stretching too wide */
+img {
+  max-width: 100%;
+  height: auto; /* Maintains aspect ratio */
+}
+
+
+/* Projects grid styling */
+.projects {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
+  grid-template-rows: auto auto 1fr; /* Create three rows for title, image, and description */
+  gap: 1.5em;
+}
+
+article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3; /* Make each article span 3 rows */
+  padding: 1em;
+  border-radius: 0.25em;
+  box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+}
+
+article h2 {
+  margin: 0; /* Remove default heading margin to avoid excessive spacing */
+  margin-bottom: 0.5em; /* Add a small margin below the heading */
+}
+
+article img {
+  width: 100%;
+  object-fit: cover; /* Ensure images cover their area consistently */
+  margin-bottom: 0.5em;
+}
+
+article p {
+  margin-top: 0; /* Remove top margin from paragraphs */
+}
+
+/* Typography - Heading styles */
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: 400%; /* Make h1 significantly larger */
+  margin-bottom: 0.5em;
+}
+
+h2 {
+  font-size: 250%; /* Make h2 clearly smaller than h1 but larger than body text */
+}
+
+h3 {
+  font-size: 175%;
+}
+
+h4 {
+  font-size: 150%;
+}
+
+h5 {
+  font-size: 125%;
+}
+
+/* Article heading specific styling */
+article h2 {
+  font-size: 150%; /* Slightly smaller than standard h2 for card context */
+  margin: 0; /* Remove default heading margin to avoid excessive spacing */
+  margin-bottom: 0.5em; /* Add a small margin below the heading */
+}
