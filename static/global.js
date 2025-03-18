@@ -25,13 +25,11 @@ if (currentLink) { // or if (currentLink !== undefined)
 
 // step 3.1
 let pages = [
-	{url: "./", title: "Home"},
-	{url: "/projects", title: "Projects"},
-	// TODO: add the rest of your pages here
+    {url: "/", title: "Home"},
+    {url: "/projects", title: "Projects"},
     {url: "/contact", title: "Contact"},
     {url: "/CV", title: "CV"},
     {url: "https://github.com/agrabowski5", title: "GitHub"},
-    
 ];
 
 let nav = document.createElement("nav");
