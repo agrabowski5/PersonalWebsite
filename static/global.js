@@ -26,10 +26,10 @@ if (currentLink) { // or if (currentLink !== undefined)
 // step 3.1
 let pages = [
 	{url: "./", title: "Home"},
-	{url: "projects", title: "Projects"},
+	{url: "/projects", title: "Projects"},
 	// TODO: add the rest of your pages here
-    {url: "contact", title: "Contact"},
-    {url: "CV", title: "CV"},
+    {url: "/contact", title: "Contact"},
+    {url: "/CV", title: "CV"},
     {url: "https://github.com/agrabowski5", title: "GitHub"},
     
 ];

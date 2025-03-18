@@ -123,13 +123,4 @@
             margin-left: 1.5em;
         }
         
-        /* Keep navigation styles intact */
-        nav ul {
-            display: contents; /* Restore navigation styling */
-        }
-        
-        nav li {
-            display: contents; /* Restore navigation styling */
-            list-style: none;
-        }
     </style>
