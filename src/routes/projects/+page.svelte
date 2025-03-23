@@ -4,7 +4,7 @@
 <h1>Projects</h1>
     <div class="projects">
         <article>
-            <h2>Lorem ipsum dolor sit.</h2>
+            <h2>Lorem ipsum dolor sit. </h2>
             <img src="https://vis-society.github.io/labs/2/images/empty.svg" alt="">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas, laborum aspernatur. Voluptatibus inventore beatae labore. A quidem dolorem nemo corporis unde? Fugit modi rerum dolore laboriosam doloremque nihil alias tempora.</p>
         </article>
