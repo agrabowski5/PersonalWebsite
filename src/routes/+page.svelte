@@ -15,3 +15,52 @@
     {/each}
 </div>
 
+<section>
+    <h2>GITHUB</h2>
+    {#await fetch("https://api.github.com/users/agrabowski5")}
+      <p>Loading...</p>
+    {:then response}
+      {#await response.json()}
+        <p>Decoding...</p>
+      {:then data}
+        <section>
+          <h2>My GitHub Stats</h2>
+          <dl class="github-stats">
+            <dt>Followers:</dt>
+            <dd>{data.followers}</dd>
+            <dt>Following:</dt>
+            <dd>{data.following}</dd>
+            <dt>Public Repositories:</dt>
+            <dd>{data.public_repos}</dd>
+          </dl>
+        </section>
+      {:catch error}
+        <p class="error">Something went wrong: {error.message}</p>
+      {/await}
+    {:catch error}
+      <p class="error">Something went wrong: {error.message}</p>
+    {/await}
+  </section>
+  
+  <!-- Remove the duplicate GitHub data block -->
+  
+  <style>
+    .github-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin: 1rem 0;
+    }
+    
+    .github-stats dt {
+      grid-row: 1;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    
+    .github-stats dd {
+      grid-row: 2;
+      margin: 0;
+      font-size: 1.2rem;
+    }
+  </style>

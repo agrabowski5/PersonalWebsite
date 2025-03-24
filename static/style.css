@@ -64,11 +64,7 @@ form {
   max-width: 40em;
 }
 
-label {
-  display: block;
-  margin-block: 1em 0.5em;
-  font-weight: bold;
-}
+
 
 input, 
 textarea, 
