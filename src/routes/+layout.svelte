@@ -39,6 +39,7 @@
      {url: "/projects", title: "Projects"},
      {url: "/contact", title: "Contact"},
      {url: "/CV", title: "CV"},
+     {url: "/meta", title: "Meta"},
      {url: "https://github.com/agrabowski5", title: "GitHub"},
  ];
 </script>

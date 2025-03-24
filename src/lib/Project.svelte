@@ -6,9 +6,15 @@
 <article>
     <svelte:element this={"h" + hLevel}>{data.title}</svelte:element>
     <img src={data.image} alt="" />
-    <p>
+    <div>
+      <p>
         {data.description}
-    </p>
+      </p>
+      {#if data.year}
+        <time class="year">{data.year}</time>
+      {/if}
+    </div>
+    
 </article>
 
 <style>
@@ -19,5 +25,18 @@
   padding: 1em;
   border-radius: 0.25em;
   box-shadow: 0 0 0.5em rgba(0, 0, 0, 0.1);
+}
+
+.year {
+    display: block;
+    font-style: italic;
+    color: #666;
+    font-size: 0.9em;
+    font-variant-numeric: oldstyle-nums;
+  }
+
+div {
+  display: flex;
+  flex-direction: column;
 }
 </style>
