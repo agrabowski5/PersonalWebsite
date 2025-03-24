@@ -1,6 +1,24 @@
 <script>
-    import projects from "$lib/projects.json";
-    import Project from "$lib/Project.svelte";
+  import projects from "$lib/projects.json";
+  import Project from "$lib/Project.svelte";
+
+  import { onMount } from "svelte";
+
+  let githubData = null;
+  let loading = true;
+  let error = null;
+
+  onMount(async () => {
+    try {
+      const response = await fetch("https://api.github.com/users/agrabowski5");
+      githubData = await response.json();
+    } catch (err) {
+      error = err;
+    }
+    loading = false;
+  });
+
+
 </script>
 
 <h1>Andrew Grabowski</h1>
