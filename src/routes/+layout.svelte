@@ -37,6 +37,7 @@
     let pages = [
      {url: "/", title: "Home"},
      {url: "/projects", title: "Projects"},
+     {url: "/simulations", title: "Simulations"},
      {url: "/contact", title: "Contact"},
      {url: "/CV", title: "CV"},
      {url: "/meta", title: "Meta"},
