@@ -1,11 +1,43 @@
 :root {
-  --color-accent: oklch(65% 50% 0);
-  --border-color: oklch(50% 10% 200 / 40%);
+  /* Sustainable green accent color */
+  --color-accent: #2ecc71;
+  --color-accent-dark: #27ae60;
+  --color-accent-light: #a8e4bc;
+  
+  /* Border colors */
+  --border-color: rgba(255, 255, 255, 0.15);
+  
+  /* Text colors */
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.7);
+  --text-muted: rgba(255, 255, 255, 0.5);
+  
+  /* Background colors */
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #252525;
+  
+  /* Card and UI element colors */
+  --card-bg: #1e1e1e;
+  --card-border: #333333;
+  
+  /* Tag colors */
+  --tag-bg: #333333;
+  --tag-text: rgba(255, 255, 255, 0.8);
+  
+  /* Code blocks */
+  --code-bg: #2d2d2d;
+  --code-inline-bg: #333333;
 }
 
 html {
-  /* Set the base font size to 16px */
-  color-scheme: light;
+  /* Set dark mode as default */
+  color-scheme: dark;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
 }
 
 body {
@@ -13,12 +45,13 @@ body {
      and use the OS's UI font as the website font
    */
   font: 100%/1.5 system-ui;
-  max-width: 100ch;
-  margin-inline: auto;
-  padding: 1px;
-  background-color: canvas;
-  color: canvastext;
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
   accent-color: var(--color-accent);
+  display: flex;
+  flex-direction: column;
 }
 
 ul {
@@ -31,7 +64,6 @@ nav {
   border-bottom: 1px solid var(--border-color);
   text-align: center;
   justify-content: center;
-  --border-color: oklch(50% 10% 200 / 40%);
 }
 
 li {
@@ -45,18 +77,22 @@ a {
   color: inherit; /* Inherit color from parent */
   padding: 0.5em; /* Add some padding for better spacing */
   text-align: center;
+  transition: color 0.2s ease;
 }
-a.current {
-  font-weight: bold; /* Style the current page link differently */
-  padding-bottom: 0.1em;
-  border-bottom: 0.4em solid var(--border-color);
-  background-color: color-mix(in oklch, var(--color-accent), canvas 85%); /* Optional: highlight current page */
-}
+
 a:hover {
+  color: var(--color-accent);
   border-bottom: 0.4em solid var(--color-accent);
   padding-bottom: 0.1em;
 }
 
+a.current {
+  font-weight: bold;
+  padding-bottom: 0.1em;
+  border-bottom: 0.4em solid var(--color-accent);
+  background-color: rgba(46, 204, 113, 0.1);
+  color: var(--color-accent-light);
+}
 
 /* Form styling */
 form {
@@ -64,18 +100,18 @@ form {
   max-width: 40em;
 }
 
-
-
 input, 
 textarea, 
 button {
-  font: inherit; /* Use the same font as the rest of the page */
+  font: inherit;
   display: block;
   width: 100%;
   box-sizing: border-box;
   padding: 0.5em;
-  border: 1px solid oklch(80% 3% 200);
+  border: 1px solid var(--border-color);
   border-radius: 0.25em;
+  background-color: var(--bg-secondary);
+  color: var(--text-primary);
 }
 
 textarea {
@@ -85,16 +121,17 @@ textarea {
 
 button {
   margin-top: 1.5em;
-  background-color:  oklch(80% 3% 200);
-  color: white;
+  background-color: var(--color-accent);
+  color: #000;
   border: none;
   padding: 0.75em;
   font-weight: bold;
   cursor: pointer;
+  transition: background-color 0.2s ease;
 }
 
 button:hover {
-  filter: brightness(1.1);
+  background-color: var(--color-accent-dark);
 }
 
 /* Add this new rule to prevent images from stretching too wide */
@@ -102,7 +139,6 @@ img {
   max-width: 100%;
   height: auto; /* Maintains aspect ratio */
 }
-
 
 /* Projects grid styling */
 .projects {
@@ -112,7 +148,18 @@ img {
   gap: 1.5em;
 }
 
+article {
+  background-color: var(--card-bg);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
+article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
 
 article h2 {
   margin: 0; /* Remove default heading margin to avoid excessive spacing */
@@ -133,6 +180,7 @@ article p {
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.1;
   text-wrap: balance;
+  color: var(--text-primary);
 }
 
 h1 {
@@ -161,4 +209,49 @@ article h2 {
   font-size: 150%; /* Slightly smaller than standard h2 for card context */
   margin: 0; /* Remove default heading margin to avoid excessive spacing */
   margin-bottom: 0.5em; /* Add a small margin below the heading */
+}
+
+/* Links styling */
+a:not(nav a) {
+  color: var(--color-accent-light);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+a:not(nav a):hover {
+  text-decoration: underline;
+  color: var(--color-accent);
+  border-bottom: none;
+}
+
+/* Selection styling */
+::selection {
+  background-color: rgba(46, 204, 113, 0.3);
+  color: var(--text-primary);
+}
+
+/* Code elements */
+pre, code {
+  background-color: var(--code-bg);
+  border-radius: 4px;
+}
+
+pre {
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+code {
+  padding: 0.2rem 0.4rem;
+  font-size: 0.9em;
+}
+
+pre code {
+  padding: 0;
+}
+
+/* Blog styling */
+.blog-tag {
+  background-color: var(--tag-bg);
+  color: var(--color-accent-light);
 }

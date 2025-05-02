@@ -1,64 +1,99 @@
-<nav>
-    {#each pages as p}
-    <a 
-      href={p.url} 
-      class:current={"." + $page.route.id === p.url}
-      target={p.url.startsWith("http") ? "_blank" : null}
-    >
-      {p.title}
-    </a>
-    {/each}
-</nav>
-
-
-
-<script> 
+<script>
     import { page } from "$app/stores";
+    import { onMount } from "svelte";
 
-    let localStorage = globalThis.localStorage ?? {};
-    let colorScheme = localStorage.colorScheme ?? "light dark";
+    // Always set to dark mode
+    const colorScheme = "dark";
 
-    let root = globalThis?.document?.documentElement;
-    $: root?.style.setProperty("color-scheme", colorScheme);
-
-    $: localStorage.colorScheme = colorScheme;
+    // Apply dark mode when component mounts
+    onMount(() => {
+        document.documentElement.style.setProperty("color-scheme", colorScheme);
+        // Add a class to the body for additional styling hooks
+        document.body.classList.add("dark-theme");
+    });
 
     let pages = [
-     {url: "/", title: "Home"},
-     {url: "/projects", title: "Projects"},
-     {url: "/blog", title: "Blog"},
-     {url: "/simulations", title: "Simulations"},
-     {url: "/contact", title: "Contact"},
-     {url: "/CV", title: "CV"},
-     /*{url: "/meta", title: "Meta"},*/
-     /*{url: "https://github.com/agrabowski5", title: "GitHub"},*/
- ];
+        {url: "/", title: "Home"},
+        {url: "/projects", title: "Projects"},
+        {url: "/blog", title: "Blog"},
+        {url: "/simulations", title: "Simulations"},
+        {url: "/contact", title: "Contact"},
+        {url: "/CV", title: "CV"},
+        /*{url: "/meta", title: "Meta"},*/
+        /*{url: "https://github.com/agrabowski5", title: "GitHub"},*/
+    ];
 </script>
 
+<div class="page-container">
+    <nav>
+        {#each pages as p}
+        <a 
+          href={p.url} 
+          class:current={"." + $page.route.id === p.url}
+          target={p.url.startsWith("http") ? "_blank" : null}
+        >
+          {p.title}
+        </a>
+        {/each}
+    </nav>
 
-<slot />
+    <main>
+        <slot />
+    </main>
+
+    <footer>
+        <p>© {new Date().getFullYear()} Andrew Grabowski - Sustainable economic solutions for a better future</p>
+    </footer>
+</div>
 
 <style>
+    .page-container {
+        max-width: 100ch;
+        margin-inline: auto;
+        padding: 1rem;
+        position: relative;
+        z-index: 1;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
     /* Navigation styles */
     nav {
         display: flex;
         gap: 1em;
         margin-bottom: 2em;
+        border-bottom: 1px solid var(--border-color);
     }
 
     nav a {
-        color: var(--text);
+        color: var(--text-primary);
         text-decoration: none;
+        transition: color 0.3s ease, border-color 0.3s ease;
+        padding: 0.5em 1em;
     }
 
     nav a:hover {
-        text-decoration: underline;
+        color: var(--color-accent);
     }
 
     nav a.current {
         font-weight: bold;
-        color: var(--accent-color);
+        color: var(--color-accent-light);
+        border-bottom: 2px solid var(--color-accent);
     }
-
+    
+    main {
+        flex: 1;
+    }
+    
+    footer {
+        margin-top: 4rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--border-color);
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        text-align: center;
+    }
 </style>
 
