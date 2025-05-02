@@ -6,20 +6,7 @@
   let animationFrame;
   
   onMount(() => {
-
-    
     if (canvasEl) {
-      // Directly debug to the DOM to help troubleshoot
-      const testDiv = document.createElement('div');
-      testDiv.style.position = 'fixed';
-      testDiv.style.bottom = '10px';
-      testDiv.style.right = '10px';
-      testDiv.style.background = 'rgba(0,0,0,0.5)';
-      testDiv.style.color = 'white';
-      testDiv.style.padding = '5px';
-      testDiv.style.zIndex = '9999';
-      document.body.appendChild(testDiv);
-      
       initCanvas();
     }
     
@@ -42,6 +29,33 @@
     
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+    
+    // Leaf colors with adjusted probabilities
+    const leafColors = [
+      { fill: '#2ecc71', stroke: '#27ae60', weight: 0.92 },  // Green - 98% probability
+      { fill: '#e74c3c', stroke: '#c0392b', weight: 0.04 },  // Red - 1% probability
+      { fill: '#f1c40f', stroke: '#f39c12', weight: 0.04 }   // Yellow/Orange - 1% probability
+    ];
+    
+    // Calculate cumulative weights for weighted random selection
+    const cumulativeWeights = [];
+    let cumulativeWeight = 0;
+    
+    for (const color of leafColors) {
+      cumulativeWeight += color.weight;
+      cumulativeWeights.push(cumulativeWeight);
+    }
+    
+    // Function to select a random color based on weights
+    function getRandomColor() {
+      const random = Math.random();
+      for (let i = 0; i < cumulativeWeights.length; i++) {
+        if (random < cumulativeWeights[i]) {
+          return leafColors[i];
+        }
+      }
+      return leafColors[0]; // Default to green in case of rounding errors
+    }
     
     // Simple leaf class
     class Leaf {
@@ -75,10 +89,15 @@
         this.speed = 1 + Math.random() * 2;
         this.rotationSpeed = (Math.random() - 0.5) * 0.05;
         this.rotation = Math.random() * Math.PI * 2;
-        this.opacity = 0.3 + Math.random() * 0.4;
+        this.opacity = 0.4 + Math.random() * 0.5;
         this.sway = 0.5 + Math.random() * 1;
         this.swayOffset = Math.random() * Math.PI * 2;
-        this.leafShape = Math.floor(Math.random() * 3);
+        this.leafShape = Math.floor(Math.random() * 4); // 4 leaf types
+        
+        // Select color based on weighted probability
+        const colorInfo = getRandomColor();
+        this.fillColor = colorInfo.fill;
+        this.strokeColor = colorInfo.stroke;
       }
       
       update() {
@@ -98,34 +117,169 @@
         ctx.rotate(this.rotation);
         ctx.globalAlpha = this.opacity;
         
-        // Draw leaf
-        ctx.fillStyle = '#2ecc71';
-        ctx.strokeStyle = '#27ae60';
+        // Set colors based on leaf type
+        ctx.fillStyle = this.fillColor;
+        ctx.strokeStyle = this.strokeColor;
         
         if (this.leafShape === 0) {
-          // Oval leaf
+          // Maple-inspired leaf
           ctx.beginPath();
-          ctx.ellipse(0, 0, this.size * 0.6, this.size, 0, 0, Math.PI * 2);
-          ctx.fill();
           
-          // Stem
-          ctx.lineWidth = this.size * 0.1;
+          // Draw maple-like shape
+          for (let i = 0; i < 5; i++) {
+            const angle = (i / 5) * Math.PI * 2;
+            const innerRadius = this.size * 0.3;
+            const outerRadius = this.size;
+            
+            const innerX = Math.cos(angle) * innerRadius;
+            const innerY = Math.sin(angle) * innerRadius;
+            
+            const outerX = Math.cos(angle) * outerRadius;
+            const outerY = Math.sin(angle) * outerRadius;
+            
+            const midAngle1 = angle + Math.PI / 10;
+            const midAngle2 = angle - Math.PI / 10;
+            
+            const midX1 = Math.cos(midAngle1) * (outerRadius * 0.8);
+            const midY1 = Math.sin(midAngle1) * (outerRadius * 0.8);
+            
+            const midX2 = Math.cos(midAngle2) * (outerRadius * 0.8);
+            const midY2 = Math.sin(midAngle2) * (outerRadius * 0.8);
+            
+            if (i === 0) {
+              ctx.moveTo(innerX, innerY);
+            } else {
+              ctx.lineTo(innerX, innerY);
+            }
+            
+            ctx.lineTo(midX1, midY1);
+            ctx.lineTo(outerX, outerY);
+            ctx.lineTo(midX2, midY2);
+          }
+          
+          ctx.closePath();
+          ctx.fill();
+          ctx.lineWidth = this.size * 0.05;
+          ctx.stroke(); // outline for the leaf
+          
+          // Draw the stem
           ctx.beginPath();
-          ctx.moveTo(0, -this.size);
-          ctx.lineTo(0, this.size);
+          ctx.lineWidth = this.size * 0.1;
+          ctx.moveTo(0, 0);
+          ctx.lineTo(0, this.size * 1.2);
+          ctx.stroke();
+          
+          // Draw leaf veins
+          ctx.beginPath();
+          ctx.lineWidth = this.size * 0.03;
+          for (let i = 0; i < 5; i++) {
+            const angle = (i / 5) * Math.PI * 2;
+            ctx.moveTo(0, 0);
+            const veinX = Math.cos(angle) * (this.size * 0.7);
+            const veinY = Math.sin(angle) * (this.size * 0.7);
+            ctx.lineTo(veinX, veinY);
+          }
           ctx.stroke();
         } 
         else if (this.leafShape === 1) {
-          // Round leaf
+          // Oval leaf with stem and vein
+          ctx.beginPath();
+          ctx.ellipse(0, 0, this.size * 0.6, this.size, 0, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.lineWidth = this.size * 0.03;
+          ctx.stroke(); // Outline for the leaf
+          
+          // Main stem/vein
+          ctx.beginPath();
+          ctx.lineWidth = this.size * 0.08;
+          ctx.moveTo(0, -this.size);
+          ctx.lineTo(0, this.size);
+          ctx.stroke();
+          
+          // Side veins
+          ctx.beginPath();
+          ctx.lineWidth = this.size * 0.05;
+          for (let i = 1; i < 4; i++) {
+            const y = -this.size + (i * this.size * 0.5);
+            const angle = Math.PI / 5;
+            
+            // Left vein
+            ctx.moveTo(0, y);
+            ctx.lineTo(-this.size * 0.5 * Math.cos(angle), y + this.size * 0.2 * Math.sin(angle));
+            
+            // Right vein
+            ctx.moveTo(0, y);
+            ctx.lineTo(this.size * 0.5 * Math.cos(angle), y + this.size * 0.2 * Math.sin(angle));
+          }
+          ctx.stroke();
+        }
+        else if (this.leafShape === 2) {
+          // Heart-shaped leaf
+          const r = this.size * 0.7;
+          
+          ctx.beginPath();
+          ctx.moveTo(0, r * 0.3);
+          
+          // Left half of heart
+          ctx.bezierCurveTo(
+            -r * 0.8, -r * 0.4,
+            -r * 1.2, -r * 0.7,
+            0, -r * 1.2
+          );
+          
+          // Right half of heart
+          ctx.bezierCurveTo(
+            r * 1.2, -r * 0.7,
+            r * 0.8, -r * 0.4,
+            0, r * 0.3
+          );
+          
+          ctx.fill();
+          ctx.lineWidth = this.size * 0.03;
+          ctx.stroke(); // Outline
+          
+          // Stem
+          ctx.beginPath();
+          ctx.lineWidth = this.size * 0.08;
+          ctx.moveTo(0, r * 0.3);
+          ctx.lineTo(0, r * 1.3);
+          ctx.stroke();
+          
+          // Center vein
+          ctx.beginPath();
+          ctx.lineWidth = this.size * 0.05;
+          ctx.moveTo(0, r * 0.3);
+          ctx.lineTo(0, -r * 0.8);
+          ctx.stroke();
+        }
+        else {
+          // Round leaf with detailed veins
           ctx.beginPath();
           ctx.arc(0, 0, this.size * 0.7, 0, Math.PI * 2);
           ctx.fill();
-        }
-        else {
-          // Simple leaf shape
+          ctx.lineWidth = this.size * 0.03;
+          ctx.stroke(); // Outline
+          
+          // Stem
+          ctx.beginPath(); 
+          ctx.lineWidth = this.size * 0.08;
+          ctx.moveTo(0, -this.size * 0.2);
+          ctx.lineTo(0, this.size * 1.1);
+          ctx.stroke();
+          
+          // Veins - spoke pattern
           ctx.beginPath();
-          ctx.ellipse(0, 0, this.size * 0.5, this.size, 0, 0, Math.PI * 2);
-          ctx.fill();
+          ctx.lineWidth = this.size * 0.04;
+          for (let i = 0; i < 6; i++) {
+            const angle = (i / 6) * Math.PI * 2;
+            ctx.moveTo(0, 0);
+            const veinLength = this.size * 0.6;
+            ctx.lineTo(
+              Math.cos(angle) * veinLength,
+              Math.sin(angle) * veinLength
+            );
+          }
+          ctx.stroke();
         }
         
         ctx.restore();
@@ -164,7 +318,6 @@
 
 <div class="leaf-background">
   <canvas bind:this={canvasEl}></canvas>
-  <!-- Debug element to see if component renders -->
 </div>
 
 <style>
@@ -174,8 +327,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 0; /* Increased from -1 to 0 - might be needed if z-index stacking is an issue */
+    z-index: 0;
     pointer-events: none;
   }
-
 </style>
