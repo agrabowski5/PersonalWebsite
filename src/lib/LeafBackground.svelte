@@ -6,12 +6,11 @@
   let animationFrame;
   
   onMount(() => {
-    console.log("LeafBackground mounted");
+
     
     if (canvasEl) {
       // Directly debug to the DOM to help troubleshoot
       const testDiv = document.createElement('div');
-      testDiv.textContent = 'Canvas initialized';
       testDiv.style.position = 'fixed';
       testDiv.style.bottom = '10px';
       testDiv.style.right = '10px';
@@ -166,7 +165,6 @@
 <div class="leaf-background">
   <canvas bind:this={canvasEl}></canvas>
   <!-- Debug element to see if component renders -->
-  <div class="debug-info">Leaf background component loaded</div>
 </div>
 
 <style>
@@ -179,16 +177,5 @@
     z-index: 0; /* Increased from -1 to 0 - might be needed if z-index stacking is an issue */
     pointer-events: none;
   }
-  
-  .debug-info {
-    position: fixed;
-    top: 5px;
-    left: 5px;
-    background: rgba(0,0,0,0.5);
-    color: white;
-    padding: 5px;
-    font-size: 12px;
-    z-index: 9999;
-    pointer-events: none;
-  }
+
 </style>
