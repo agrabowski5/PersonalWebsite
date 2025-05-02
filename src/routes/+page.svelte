@@ -74,7 +74,7 @@
   <section class="featured-projects">
     <h2>Latest Projects</h2>
     <div class="projects">
-      {#each projects.slice(0, 3) as p}
+      {#each projects.slice(0, 4) as p}
         <Project data={p} />
       {/each}
     </div>
