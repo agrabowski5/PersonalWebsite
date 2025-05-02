@@ -59,7 +59,7 @@
     placeholder="🔍 Search projects…" 
 />
 
-<Pie data={pieData} bind:selectedIndex={selectedYearIndex} />
+<!--<Pie data={pieData} bind:selectedIndex={selectedYearIndex} />-->
 
 <div class="projects">
     {#each filteredByYear as p}
