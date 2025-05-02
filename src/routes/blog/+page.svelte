@@ -1,277 +1,363 @@
 <script>
     import { onMount } from 'svelte';
     
-    // Blog post metadata
     let posts = [
         {
-            slug: 'introduction-to-auction-theory',
-            title: 'Introduction to Auction Theory',
-            date: '2025-05-01',
-            excerpt: 'An overview of auction theory fundamentals and why they matter in modern economics.',
-            tags: ['economics', 'auction theory', 'game theory'],
-            image: '/images/blog/auction-theory.jpg'
+            id: 1,
+            title: "The Future of Sustainable Aviation Fuel Markets",
+            excerpt: "Exploring innovative financial mechanisms to scale SAF adoption and overcome market barriers.",
+            date: "2025-04-15",
+            tags: ["aviation", "sustainability", "market design"],
+            image: "/images/blog/saf-market.jpg",
+            readTime: "7 min read"
         },
         {
-            slug: 'mechanism-design-primer',
-            title: 'A Primer on Mechanism Design',
-            date: '2025-04-15',
-            excerpt: 'Understanding how incentives shape behavior and outcomes in economic systems.',
-            tags: ['economics', 'mechanism design', 'incentives'],
-            image: '/images/blog/mechanism-design.jpg'
+            id: 2,
+            title: "Book and Claim Systems: Tokenizing Environmental Attributes",
+            excerpt: "How digital accounting systems can revolutionize the way we track and trade sustainability benefits.",
+            date: "2025-03-22",
+            tags: ["book-and-claim", "environmental markets", "blockchain"],
+            image: "/images/blog/book-claim.jpg",
+            readTime: "5 min read"
         },
         {
-            slug: 'simulation-approaches',
-            title: 'Approaches to Economic Simulation',
-            date: '2025-03-22',
-            excerpt: 'Comparing different methodologies for simulating economic systems and auctions.',
-            tags: ['simulation', 'economics', 'modeling'],
-            image: '/images/blog/simulation.jpg'
+            id: 3,
+            title: "Game Theory in Collaborative Climate Action",
+            excerpt: "Analyzing the strategic dynamics of multi-stakeholder climate initiatives and how to optimize outcomes.",
+            date: "2025-02-10",
+            tags: ["game theory", "climate policy", "collaboration"],
+            image: "/images/blog/game-theory.jpg",
+            readTime: "9 min read"
+        },
+        {
+            id: 4,
+            title: "Systems Engineering Approaches to Decarbonization",
+            excerpt: "Applying systems thinking to complex climate challenges for more effective solutions.",
+            date: "2025-01-05",
+            tags: ["systems engineering", "decarbonization", "case study"],
+            image: "/images/blog/systems-engineering.jpg",
+            readTime: "6 min read"
         }
-        // You can add more sample posts here
     ];
     
-    // Filter and sort functionality
-    let searchQuery = '';
-    let selectedTag = '';
-    let tags = [];
+    let categories = ["All", "Market Design", "Technology", "Policy", "Research"];
+    let selectedCategory = "All";
     
-    // Extract all unique tags from posts
-    $: {
-        const tagSet = new Set();
-        posts.forEach(post => {
-            post.tags.forEach(tag => tagSet.add(tag));
-        });
-        tags = Array.from(tagSet).sort();
+    function filterByCategory(category) {
+        selectedCategory = category;
     }
     
-    // Filtered posts based on search query and selected tag
-    $: filteredPosts = posts.filter(post => {
-        // Search filter
-        const matchesSearch = searchQuery === '' || 
-            post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-            post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
-            
-        // Tag filter
-        const matchesTag = selectedTag === '' || post.tags.includes(selectedTag);
-        
-        return matchesSearch && matchesTag;
-    }).sort((a, b) => new Date(b.date) - new Date(a.date)); // Sort by date, newest first
-    
-    // Format date for display
-    function formatDate(dateStr) {
-        const date = new Date(dateStr);
-        return date.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric'
-        });
-    }
+    $: filteredPosts = selectedCategory === "All" ? 
+        posts : 
+        posts.filter(post => post.tags.some(tag => 
+            tag.toLowerCase().includes(selectedCategory.toLowerCase())
+        ));
 </script>
 
 <svelte:head>
     <title>Blog | Andrew Grabowski</title>
-    <meta name="description" content="Thoughts and insights on Climate Tech, Sustainable Finance, Game Theory, Computer Science and whatever else I'm trying to learn." />
+    <meta name="description" content="Andrew Grabowski's insights on sustainable aviation, market design for climate solutions, and systems engineering approaches." />
 </svelte:head>
 
-<div class="content-section">
-    <h1>Blog</h1>
-    
-    <p class="intro">
-        Exploring ideas in economics, auction theory, mechanism design, and more. Here you'll find my thoughts,
-        research notes, and practical insights on topics I'm passionate about.
-    </p>
-    
-    <div class="blog-controls">
-        <div class="search-container">
-            <input 
-                type="text" 
-                placeholder="Search posts..." 
-                bind:value={searchQuery}
-                aria-label="Search blog posts"
-            >
-        </div>
-        
-        <div class="tags-filter">
-            <label for="tag-filter">Filter by tag:</label>
-            <select id="tag-filter" bind:value={selectedTag}>
-                <option value="">All tags</option>
-                {#each tags as tag}
-                    <option value={tag}>{tag}</option>
-                {/each}
-            </select>
-        </div>
+<div class="blog-container">
+    <div class="page-header">
+        <h1>Blog</h1>
+        <p class="intro">
+            Thoughts, research findings, and insights on sustainable markets, climate technology, 
+            and the intersection of engineering and economics.
+        </p>
     </div>
     
-    {#if filteredPosts.length === 0}
-        <div class="no-results">
-            <p>No posts found matching your criteria. Try adjusting your search or filters.</p>
+    <div class="blog-layout">
+        <div class="blog-sidebar">
+            <div class="categories">
+                <h2>Categories</h2>
+                <ul class="category-list">
+                    {#each categories as category}
+                        <li>
+                            <button 
+                                class:active={selectedCategory === category}
+                                on:click={() => filterByCategory(category)}
+                            >
+                                {category}
+                            </button>
+                        </li>
+                    {/each}
+                </ul>
+            </div>
+            
+            <div class="newsletter">
+                <h2>Newsletter</h2>
+                <p>Subscribe to get my latest posts and research updates.</p>
+                <form>
+                    <input type="email" placeholder="Your email address" required>
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
         </div>
-    {:else}
-        <div class="blog-grid">
-            {#each filteredPosts as post}
-                <article class="blog-card">
-                    <a href={`/blog/${post.slug}`} class="blog-link">
-                        {#if post.image}
-                            <div class="blog-image" style="background-image: url({post.image})"></div>
-                        {:else}
-                            <div class="blog-image blog-image-placeholder"></div>
-                        {/if}
-                        
-                        <div class="blog-content">
-                            <h2>{post.title}</h2>
-                            <div class="blog-meta">
-                                <time datetime={post.date}>{formatDate(post.date)}</time>
-                            </div>
-                            <p class="blog-excerpt">{post.excerpt}</p>
-                            
-                            <div class="blog-tags">
-                                {#each post.tags as tag}
-                                    <span class="tag" on:click|preventDefault={() => selectedTag = tag}>
-                                        #{tag}
-                                    </span>
-                                {/each}
+        
+        <div class="blog-main">
+            <div class="posts-grid">
+                {#each filteredPosts as post}
+                    <article class="post-card">
+                        <div class="post-image">
+                            <img src={post.image || "/images/blog/placeholder.jpg"} alt={post.title}>
+                            <div class="post-meta">
+                                <span class="post-date">{new Date(post.date).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'})}</span>
+                                <span class="read-time">{post.readTime}</span>
                             </div>
                         </div>
-                    </a>
-                </article>
-            {/each}
+                        <div class="post-content">
+                            <h2>{post.title}</h2>
+                            <p>{post.excerpt}</p>
+                            <div class="post-tags">
+                                {#each post.tags as tag}
+                                    <span class="tag">{tag}</span>
+                                {/each}
+                            </div>
+                            <a href={`/blog/${post.id}`} class="read-more">Read more</a>
+                        </div>
+                    </article>
+                {/each}
+            </div>
+            
+            {#if filteredPosts.length === 0}
+                <div class="no-posts">
+                    <p>No posts found in this category.</p>
+                    <button on:click={() => selectedCategory = "All"}>View all posts</button>
+                </div>
+            {/if}
         </div>
-    {/if}
+    </div>
 </div>
 
 <style>
+    .blog-container {
+        max-width: 100%;
+    }
+    
+    .page-header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1rem;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
     .intro {
-        max-width: 800px;
-        margin-bottom: 2rem;
         font-size: 1.1rem;
-        line-height: 1.5;
+        line-height: 1.6;
+        max-width: 800px;
     }
     
-    .blog-controls {
+    .blog-layout {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 2rem;
+    }
+    
+    /* Sidebar */
+    .blog-sidebar {
         display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-        margin-bottom: 2rem;
-        padding: 1rem;
-        background-color: var(--background-alt, #f5f5f5);
-        border-radius: 8px;
+        flex-direction: column;
+        gap: 2rem;
     }
     
-    .search-container {
-        flex: 1;
-        min-width: 250px;
+    .categories h2, .newsletter h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
     }
     
-    .search-container input {
+    .category-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .category-list li {
+        margin-bottom: 0.5rem;
+    }
+    
+    .category-list button {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        cursor: pointer;
+        padding: 0.5rem 0;
+        text-align: left;
         width: 100%;
-        padding: 0.5rem;
-        border: 1px solid var(--border-color, #ccc);
-        border-radius: 4px;
-        font-size: 1rem;
+        transition: color 0.2s;
     }
     
-    .tags-filter {
+    .category-list button:hover {
+        color: var(--color-accent);
+    }
+    
+    .category-list button.active {
+        color: var(--color-accent);
+        font-weight: bold;
+    }
+    
+    .newsletter p {
+        margin-bottom: 1rem;
+    }
+    
+    .newsletter form {
         display: flex;
-        align-items: center;
+        flex-direction: column;
         gap: 0.5rem;
     }
     
-    .tags-filter select {
-        padding: 0.5rem;
-        border: 1px solid var(--border-color, #ccc);
+    .newsletter input {
+        padding: 0.75rem;
+        border: 1px solid var(--border-color);
         border-radius: 4px;
-        font-size: 1rem;
-        background-color: var(--background, white);
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
     }
     
-    .blog-grid {
+    .newsletter button {
+        padding: 0.75rem;
+        background-color: var(--color-accent);
+        color: black;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.2s;
+    }
+    
+    .newsletter button:hover {
+        background-color: var(--color-accent-dark);
+    }
+    
+    /* Blog posts grid */
+    .posts-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
     }
     
-    .blog-card {
-        border: 1px solid var(--border-color, #ccc);
+    .post-card {
+        background-color: var(--bg-secondary);
         border-radius: 8px;
         overflow: hidden;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s;
     }
     
-    .blog-card:hover {
+    .post-card:hover {
         transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
     }
     
-    .blog-link {
-        text-decoration: none;
-        color: inherit;
-        display: block;
+    .post-image {
+        position: relative;
+        height: 200px;
+        overflow: hidden;
     }
     
-    .blog-image {
-        height: 180px;
-        background-size: cover;
-        background-position: center;
-        background-color: var(--background-alt, #f5f5f5);
+    .post-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
     
-    .blog-image-placeholder {
-        background-image: linear-gradient(135deg, var(--color-accent, #0066ff) 0%, var(--color-accent-light, #66a3ff) 100%);
+    .post-meta {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.5rem;
+        background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+        color: white;
+        font-size: 0.8rem;
     }
     
-    .blog-content {
+    .post-content {
         padding: 1.5rem;
     }
     
-    .blog-content h2 {
+    .post-content h2 {
         margin-top: 0;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0.75rem;
         font-size: 1.4rem;
         line-height: 1.3;
     }
     
-    .blog-meta {
-        color: var(--text-muted, #666);
-        font-size: 0.9rem;
+    .post-content p {
         margin-bottom: 1rem;
+        color: var(--text-secondary);
     }
     
-    .blog-excerpt {
-        margin-bottom: 1rem;
-        line-height: 1.5;
-    }
-    
-    .blog-tags {
+    .post-tags {
         display: flex;
         flex-wrap: wrap;
         gap: 0.5rem;
+        margin-bottom: 1rem;
     }
     
     .tag {
-        background-color: var(--tag-bg, #eee);
-        color: var(--tag-text, #555);
-        padding: 0.2rem 0.5rem;
-        border-radius: 4px;
+        background-color: rgba(46, 204, 113, 0.1);
+        color: var(--color-accent-light);
+        padding: 0.25rem 0.5rem;
+        border-radius: 20px;
         font-size: 0.8rem;
-        cursor: pointer;
-        transition: background-color 0.2s ease;
     }
     
-    .tag:hover {
-        background-color: var(--tag-bg-hover, #ddd);
+    .read-more {
+        display: inline-block;
+        color: var(--color-accent);
+        text-decoration: none;
+        font-weight: bold;
+        transition: color 0.2s;
     }
     
-    .no-results {
-        padding: 2rem;
+    .read-more:hover {
+        color: var(--color-accent-light);
+    }
+    
+    .no-posts {
         text-align: center;
-        background-color: var(--background-alt, #f5f5f5);
+        padding: 3rem 0;
+        background-color: var(--bg-secondary);
         border-radius: 8px;
     }
     
-    /* Responsive adjustments */
-    @media (max-width: 768px) {
-        .blog-controls {
-            flex-direction: column;
+    .no-posts button {
+        background: none;
+        border: 1px solid var(--color-accent);
+        color: var(--color-accent);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+    
+    .no-posts button:hover {
+        background-color: rgba(46, 204, 113, 0.1);
+    }
+    
+    @media (max-width: 900px) {
+        .blog-layout {
+            grid-template-columns: 1fr;
+        }
+        
+        .blog-sidebar {
+            order: 2;
+        }
+        
+        .blog-main {
+            order: 1;
+        }
+        
+        .posts-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
     }
 </style>

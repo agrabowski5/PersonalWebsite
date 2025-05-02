@@ -1,89 +1,200 @@
 <script>
-    import * as d3 from 'd3';
     import projects from "$lib/projects.json";
     import Project from "$lib/Project.svelte";
-    import Pie from '$lib/Pie.svelte';
-
-    // Search Bar 
+    import Pie from "$lib/Pie.svelte";
+    import { onMount } from "svelte";
+    
     let query = "";
-
-    // First, filter projects by search query
-    $: filteredProjects = projects.filter(project => {
-        if (!query) return true;
-        let values = Object.values(project).join("\n").toLowerCase();
-        return values.includes(query.toLowerCase());
-    });
-
-    // Define selectedYearIndex variable for the pie chart
     let selectedYearIndex = -1;
-
-    // Calculate pie data from filtered projects
-    let pieData;
+    let selectedYear = null;
+    let pieData = [];
+    
+    // Generate data for the pie chart - count projects by year
+    onMount(() => {
+        try {
+            // Make sure we have projects before trying to calculate years
+            if (!projects || !projects.length) {
+                console.error("No projects data available");
+                return;
+            }
+            
+            // Extract unique years and count projects
+            const years = [...new Set(projects.filter(p => p.year).map(p => p.year))];
+            
+            if (!years.length) {
+                console.warn("No years found in project data");
+                return;
+            }
+            
+            pieData = years.map(year => {
+                return {
+                    label: year.toString(),
+                    value: projects.filter(p => p.year === year).length,
+                    color: `hsl(${120 + (year-2020)*30}, 70%, 60%)`
+                };
+            });
+            
+            // Sort by year (descending)
+            pieData.sort((a, b) => parseInt(b.label) - parseInt(a.label));
+        } catch (error) {
+            console.error("Error generating pie data:", error);
+        }
+    });
+    
+    // Update selectedYear when selectedYearIndex changes
     $: {
-        // Process data for pie chart
-        let rolledData = d3.rollups(filteredProjects, v => v.length, d => d.year);
-        pieData = rolledData.map(([year, count]) => {
-            return { value: count, label: year };
-        });
+        if (selectedYearIndex >= 0 && pieData && pieData[selectedYearIndex]) {
+            selectedYear = parseInt(pieData[selectedYearIndex].label);
+        } else {
+            selectedYear = null;
+        }
     }
-
-    // Now extract the selected year based on the selected index
-    $: selectedYear = selectedYearIndex >= 0 && pieData.length > selectedYearIndex 
-        ? pieData[selectedYearIndex].label 
-        : null;
-
-    // Finally, filter projects by both search and selected year
+    
+    // Filter projects by search query
+    $: filteredProjects = projects.filter(project => {
+        const searchString = `${project.title} ${project.description} ${project.tags ? project.tags.join(' ') : ''}`.toLowerCase();
+        return searchString.includes(query.toLowerCase());
+    });
+    
+    // Filter projects by selected year
     $: filteredByYear = filteredProjects.filter(project => {
-        if (selectedYear) {
+        if (selectedYear && project.year) {
             return project.year === selectedYear;
         }
         return true;
     });
-
-    // Debug:
-    $: console.log({
-        selectedYearIndex,
-        selectedYear,
-        pieDataLength: pieData?.length,
-        filteredProjectsCount: filteredProjects.length,
-        filteredByYearCount: filteredByYear.length
-    });
 </script>
 
-<h1>{projects.length} Projects</h1>
+<svelte:head>
+    <title>Projects | Andrew Grabowski</title>
+    <meta name="description" content="Explore Andrew Grabowski's projects in sustainable market design, climate economics, and systems engineering." />
+</svelte:head>
 
-<input 
-    type="search" 
-    bind:value={query}
-    aria-label="Search projects" 
-    placeholder="🔍 Search projects…" 
-/>
+<div class="projects-container">
+    <div class="page-header">
+        <h1>Projects</h1>
+        <p class="intro">
+            Explore my work in sustainable aviation fuels, market design for climate solutions, and systems engineering. 
+            Each project represents my commitment to developing innovative approaches to environmental challenges.
+        </p>
+    </div>
+    
 
-<!--<Pie data={pieData} bind:selectedIndex={selectedYearIndex} />-->
-
-<div class="projects">
-    {#each filteredByYear as p}
-        <Project data={p} />
-    {/each}
+    {#if filteredByYear.length === 0}
+        <div class="no-results">
+            <p>No projects match your search criteria.</p>
+            <button class="clear-filter" on:click={() => { query = ""; selectedYearIndex = -1; }}>
+                Clear all filters
+            </button>
+        </div>
+    {:else}
+        <div class="projects-grid">
+            {#each filteredByYear as p}
+                <Project data={p} />
+            {/each}
+        </div>
+    {/if}
 </div>
 
 <style>
-    .projects {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1em;
-        margin-top: 2em;
+    .projects-container {
+        max-width: 100%;
     }
-
+    
+    .page-header {
+        margin-bottom: 2rem;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 1rem;
+    }
+    
+    h1 {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+    }
+    
+    .intro {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        max-width: 800px;
+        margin-bottom: 1.5rem;
+    }
+    
+    .filters {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .search-box {
+        max-width: 100%;
+    }
+    
     input[type="search"] {
-        display: block;
         width: 100%;
-        max-width: 40em;
-        margin: 1em 0;
-        padding: 0.5em;
-        border: 1px solid #ccc;
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
         border-radius: 4px;
-        font-size: 1em;
+        border: 1px solid var(--border-color);
+        background-color: var(--bg-secondary);
+        color: var(--text-primary);
+    }
+    
+    input[type="search"]:focus {
+        border-color: var(--color-accent);
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+    }
+    
+    .year-filter {
+        background-color: var(--bg-secondary);
+        padding: 1.5rem;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    .year-filter h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: var(--color-accent-light);
+    }
+    
+    .clear-filter {
+        background: none;
+        border: 1px solid var(--color-accent);
+        color: var(--color-accent);
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+        cursor: pointer;
+        margin-top: 1rem;
+        transition: all 0.2s ease;
+    }
+    
+    .clear-filter:hover {
+        background-color: rgba(46, 204, 113, 0.1);
+    }
+    
+    .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 1.5rem;
+    }
+    
+    .no-results {
+        text-align: center;
+        padding: 3rem 0;
+        background-color: var(--bg-secondary);
+        border-radius: 8px;
+    }
+    
+    @media (max-width: 768px) {
+        .filters {
+            grid-template-columns: 1fr;
+        }
+        
+        .projects-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        }
     }
 </style>
 
