@@ -1,5 +1,5 @@
 <script>
-  import { onMount, onDestroy } from 'svelte';
+  import { onMount } from 'svelte';
   
   let name = '';
   let email = '';
@@ -7,19 +7,6 @@
   let message = '';
   let formSubmitted = false;
   let formError = false;
-  let canvasEl;
-  let animationFrame;
-  let leaves = [];
-  
-  onMount(() => {
-    if (canvasEl) initCanvas();
-    
-    return () => {
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    };
-  });
   
   function handleSubmit(e) {
     e.preventDefault();
@@ -39,136 +26,6 @@
     const mailtoUrl = `mailto:agrabows@mit.edu?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
     window.location.href = mailtoUrl;
   }
-  
-  function initCanvas() {
-    const canvas = canvasEl;
-    const ctx = canvas.getContext('2d');
-    
-    // Resize canvas to fill parent
-    function resizeCanvas() {
-      canvas.width = canvas.parentElement.offsetWidth;
-      canvas.height = canvas.parentElement.offsetHeight;
-    }
-    
-    resizeCanvas();
-    window.addEventListener('resize', resizeCanvas);
-    
-    // Leaf class for animation
-    class Leaf {
-      constructor(x, y, size, speed, opacity) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.speed = speed;
-        this.opacity = opacity;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.leafType = Math.floor(Math.random() * 3); // 3 types of leaves
-      }
-      
-      update() {
-        this.y += this.speed;
-        this.x += Math.sin(this.y * 0.01) * 0.5;
-        this.rotation += this.rotationSpeed;
-        
-        // Reset when out of view
-        if (this.y > canvas.height + this.size) {
-          this.y = -this.size;
-          this.x = Math.random() * canvas.width;
-        }
-      }
-      
-      draw() {
-        ctx.save();
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.rotation);
-        ctx.globalAlpha = this.opacity;
-        
-        // Draw a simple leaf shape
-        ctx.fillStyle = '#2ecc71';
-        ctx.beginPath();
-        
-        if (this.leafType === 0) {
-          // Oval leaf
-          ctx.ellipse(0, 0, this.size * 0.6, this.size, 0, 0, Math.PI * 2);
-          ctx.fill();
-          
-          // Stem
-          ctx.beginPath();
-          ctx.strokeStyle = '#27ae60';
-          ctx.lineWidth = this.size * 0.1;
-          ctx.moveTo(0, -this.size);
-          ctx.lineTo(0, this.size);
-          ctx.stroke();
-        } else if (this.leafType === 1) {
-          // Round leaf
-          ctx.arc(0, 0, this.size * 0.7, 0, Math.PI * 2);
-          ctx.fill();
-          
-          // Veins
-          ctx.beginPath();
-          ctx.strokeStyle = '#27ae60';
-          ctx.lineWidth = this.size * 0.05;
-          for (let i = 0; i < 4; i++) {
-            ctx.moveTo(0, 0);
-            ctx.lineTo(Math.cos(i * Math.PI/2) * this.size * 0.7, 
-                       Math.sin(i * Math.PI/2) * this.size * 0.7);
-          }
-          ctx.stroke();
-        } else {
-          // Simple maple-like leaf
-          for (let i = 0; i < 5; i++) {
-            const angle = (i / 5) * Math.PI * 2;
-            const x = Math.cos(angle) * this.size;
-            const y = Math.sin(angle) * this.size;
-            
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
-          ctx.fill();
-        }
-        
-        ctx.restore();
-      }
-    }
-    
-    // Create leaves
-    const leaves = [];
-    for (let i = 0; i < 20; i++) {
-      leaves.push(new Leaf(
-        Math.random() * canvas.width, // x
-        Math.random() * canvas.height, // y
-        2 + Math.random() * 8, // size
-        0.2 + Math.random() * 0.5, // speed
-        0.1 + Math.random() * 0.3  // opacity
-      ));
-    }
-    
-    // Animation loop
-    function animate() {
-      // Clear canvas with semi-transparent black for trail effect
-      ctx.fillStyle = 'rgba(18, 18, 18, 0.2)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-      
-      // Update and draw leaves
-      leaves.forEach(leaf => {
-        leaf.update();
-        leaf.draw();
-      });
-      
-      animationFrame = requestAnimationFrame(animate);
-    }
-    
-    animate();
-    
-    // Clean up when component is unmounted
-    onDestroy(() => {
-      window.removeEventListener('resize', resizeCanvas);
-      if (animationFrame) {
-        cancelAnimationFrame(animationFrame);
-      }
-    });
-  }
 </script>
 
 <svelte:head>
@@ -178,7 +35,7 @@
 
 <div class="contact-container">
   <div class="canvas-container">
-    <canvas bind:this={canvasEl}></canvas>
+    <canvas></canvas>
   </div>
 
   <div class="content-section">

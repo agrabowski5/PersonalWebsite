@@ -1,19 +1,29 @@
 <script>
   import { onMount, onDestroy } from 'svelte';
   
-  export let intensity = 1; // Allows different pages to adjust leaf density
+  export let intensity = 1;
   let canvasEl;
   let animationFrame;
-  let leaves = [];
-  
-  // Add debugging
-  console.log('LeafBackground component initialized with intensity:', intensity);
   
   onMount(() => {
-    console.log('LeafBackground mounted, canvas element exists:', !!canvasEl);
-    if (canvasEl) initCanvas();
+    console.log("LeafBackground mounted");
     
-    // Clean up animation frame on component destroy
+    if (canvasEl) {
+      // Directly debug to the DOM to help troubleshoot
+      const testDiv = document.createElement('div');
+      testDiv.textContent = 'Canvas initialized';
+      testDiv.style.position = 'fixed';
+      testDiv.style.bottom = '10px';
+      testDiv.style.right = '10px';
+      testDiv.style.background = 'rgba(0,0,0,0.5)';
+      testDiv.style.color = 'white';
+      testDiv.style.padding = '5px';
+      testDiv.style.zIndex = '9999';
+      document.body.appendChild(testDiv);
+      
+      initCanvas();
+    }
+    
     return () => {
       if (animationFrame) {
         cancelAnimationFrame(animationFrame);
@@ -22,167 +32,100 @@
   });
   
   function initCanvas() {
-    console.log('Initializing canvas');
     const canvas = canvasEl;
     const ctx = canvas.getContext('2d');
     
-    // Add a visible background temporarily to see if the canvas is positioned correctly
-    ctx.fillStyle = 'rgba(255, 0, 0, 0.2)'; // Semi-transparent red
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-    
-    // Resize canvas to fill viewport
+    // Make canvas full screen
     function resizeCanvas() {
       canvas.width = window.innerWidth;
       canvas.height = window.innerHeight;
-      
-      // Regenerate leaves after resize
-      createLeaves();
     }
     
-    // Handle window resize
-    window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
     
-    // Leaf class for animation
+    // Simple leaf class
     class Leaf {
-      constructor(x, y, size, speed, opacity, bounce) {
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.baseSpeed = speed;
-        this.speed = speed;
-        this.opacity = opacity;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.leafType = Math.floor(Math.random() * 3); // 3 types of leaves
-        this.sway = Math.random() * 0.1;
-        this.swayOffset = Math.random() * Math.PI * 2;
-        this.lastTime = performance.now();
-        
-        // Edge behavior
-        this.bounce = bounce; // Whether to bounce off edges
-        this.edge = null; // Which edge it's currently near
-        this.bounceDecay = 0.8; // Energy loss on bounce
-        this.bounceCounter = 0; // Count bounces to eventually reset
-        this.xVelocity = 0; // Horizontal velocity (for bouncing)
+      constructor() {
+        this.reset();
       }
       
-      update(time) {
-        // Time-based animation for consistent speed
-        const delta = time - this.lastTime;
-        this.lastTime = time;
-        const timeScale = delta / 16.7; // Normalize to ~60fps
+      reset() {
+        // Find the container edges
+        const container = document.querySelector('.page-container');
+        let leftEdge = 100;
+        let rightEdge = window.innerWidth - 100;
         
-        // Basic movement
-        this.y += this.speed * timeScale;
+        if (container) {
+          const rect = container.getBoundingClientRect();
+          leftEdge = rect.left;
+          rightEdge = rect.right;
+        }
         
-        // Sway side to side
-        const swayAmount = Math.sin(this.y * 0.01 + this.swayOffset) * this.sway;
-        this.x += swayAmount * timeScale;
+        // Position on either left or right side
+        this.onLeft = Math.random() > 0.5;
         
-        // Add horizontal velocity when bouncing
-        this.x += this.xVelocity * timeScale;
-        
-        // Rotate leaf
-        this.rotation += this.rotationSpeed * timeScale;
-        
-        // Detect edges (left and right margins)
-        const leftBorder = 20;
-        const rightBorder = canvas.width - 20;
-        
-        // Left edge collision
-        if (this.x - this.size < leftBorder) {
-          if (this.bounce && this.edge !== 'left') {
-            this.edge = 'left';
-            this.xVelocity = Math.abs(this.xVelocity) + 0.5;
-            this.rotationSpeed = Math.abs(this.rotationSpeed) * 3;
-            this.bounceCounter++;
-          }
-          this.x = leftBorder + this.size;
-        } 
-        // Right edge collision
-        else if (this.x + this.size > rightBorder) {
-          if (this.bounce && this.edge !== 'right') {
-            this.edge = 'right';
-            this.xVelocity = -Math.abs(this.xVelocity) - 0.5;
-            this.rotationSpeed = -Math.abs(this.rotationSpeed) * 3;
-            this.bounceCounter++;
-          }
-          this.x = rightBorder - this.size;
+        if (this.onLeft) {
+          this.x = Math.random() * leftEdge;
         } else {
-          this.edge = null;
+          this.x = rightEdge + Math.random() * (window.innerWidth - rightEdge);
         }
         
-        // Apply bouncing effect decay
-        if (this.xVelocity !== 0) {
-          this.xVelocity *= 0.98; // Air resistance
-          if (Math.abs(this.xVelocity) < 0.1) this.xVelocity = 0;
-        }
+        this.y = -20 - Math.random() * 100;
+        this.size = 5 + Math.random() * 10;
+        this.speed = 1 + Math.random() * 2;
+        this.rotationSpeed = (Math.random() - 0.5) * 0.05;
+        this.rotation = Math.random() * Math.PI * 2;
+        this.opacity = 0.3 + Math.random() * 0.4;
+        this.sway = 0.5 + Math.random() * 1;
+        this.swayOffset = Math.random() * Math.PI * 2;
+        this.leafShape = Math.floor(Math.random() * 3);
+      }
+      
+      update() {
+        this.y += this.speed;
+        this.x += Math.sin(this.y * 0.01 + this.swayOffset) * this.sway;
+        this.rotation += this.rotationSpeed;
         
-        // Reset when out of view or after several bounces
-        if (this.y > canvas.height + this.size || this.bounceCounter > 3) {
+        // Reset when out of view
+        if (this.y > window.innerHeight + 50) {
           this.reset();
         }
       }
       
-      reset() {
-        this.y = -this.size - Math.random() * canvas.height * 0.3;
-        this.x = Math.random() * canvas.width;
-        this.rotation = Math.random() * Math.PI * 2;
-        this.rotationSpeed = (Math.random() - 0.5) * 0.01;
-        this.speed = this.baseSpeed * (0.7 + Math.random() * 0.6);
-        this.xVelocity = 0;
-        this.edge = null;
-        this.bounceCounter = 0;
-      }
-      
-      draw(ctx) {
+      draw() {
         ctx.save();
         ctx.translate(this.x, this.y);
         ctx.rotate(this.rotation);
         ctx.globalAlpha = this.opacity;
         
-        // Draw a simple leaf shape
+        // Draw leaf
         ctx.fillStyle = '#2ecc71';
-        ctx.beginPath();
+        ctx.strokeStyle = '#27ae60';
         
-        if (this.leafType === 0) {
+        if (this.leafShape === 0) {
           // Oval leaf
+          ctx.beginPath();
           ctx.ellipse(0, 0, this.size * 0.6, this.size, 0, 0, Math.PI * 2);
           ctx.fill();
           
           // Stem
-          ctx.beginPath();
-          ctx.strokeStyle = '#27ae60';
           ctx.lineWidth = this.size * 0.1;
+          ctx.beginPath();
           ctx.moveTo(0, -this.size);
           ctx.lineTo(0, this.size);
           ctx.stroke();
-        } else if (this.leafType === 1) {
+        } 
+        else if (this.leafShape === 1) {
           // Round leaf
+          ctx.beginPath();
           ctx.arc(0, 0, this.size * 0.7, 0, Math.PI * 2);
           ctx.fill();
-          
-          // Veins
+        }
+        else {
+          // Simple leaf shape
           ctx.beginPath();
-          ctx.strokeStyle = '#27ae60';
-          ctx.lineWidth = this.size * 0.05;
-          for (let i = 0; i < 4; i++) {
-            ctx.moveTo(0, 0);
-            ctx.lineTo(Math.cos(i * Math.PI/2) * this.size * 0.7, 
-                     Math.sin(i * Math.PI/2) * this.size * 0.7);
-          }
-          ctx.stroke();
-        } else {
-          // Simple maple-like leaf
-          for (let i = 0; i < 5; i++) {
-            const angle = (i / 5) * Math.PI * 2;
-            const x = Math.cos(angle) * this.size;
-            const y = Math.sin(angle) * this.size;
-            
-            if (i === 0) ctx.moveTo(x, y);
-            else ctx.lineTo(x, y);
-          }
+          ctx.ellipse(0, 0, this.size * 0.5, this.size, 0, 0, Math.PI * 2);
           ctx.fill();
         }
         
@@ -190,49 +133,30 @@
       }
     }
     
-    function createLeaves() {
-      // Clear existing leaves
-      leaves = [];
-      
-      // Calculate number of leaves based on viewport size and intensity
-      const leafCount = Math.floor(20 * intensity + (canvas.width * canvas.height) / 100000);
-      
-      // Create new leaves
-      for (let i = 0; i < leafCount; i++) {
-        // Randomly place leaves across the entire height (not just at the top)
-        const y = Math.random() * canvas.height * 1.2 - canvas.height * 0.1;
-        
-        leaves.push(new Leaf(
-          Math.random() * canvas.width, // x
-          y, // y
-          2 + Math.random() * 8, // size
-          0.2 + Math.random() * 0.5, // speed
-          0.1 + Math.random() * 0.3,  // opacity
-          true // enable bouncing off edges
-        ));
-      }
+    // Create leaves
+    const leaves = [];
+    const numLeaves = Math.floor(30 * intensity);
+    
+    for (let i = 0; i < numLeaves; i++) {
+      leaves.push(new Leaf());
     }
     
-    createLeaves();
-    
     // Animation loop
-    function animate(timestamp) {
-      // Clear canvas with semi-transparent black for trail effect
-      ctx.fillStyle = 'rgba(18, 18, 18, 0.2)';
+    function animate() {
+      ctx.fillStyle = 'rgba(18, 18, 18, 0.1)'; // Transparent black for trails
       ctx.fillRect(0, 0, canvas.width, canvas.height);
       
-      // Update and draw leaves
       leaves.forEach(leaf => {
-        leaf.update(timestamp);
-        leaf.draw(ctx);
+        leaf.update();
+        leaf.draw();
       });
       
       animationFrame = requestAnimationFrame(animate);
     }
     
-    animationFrame = requestAnimationFrame(animate);
+    animate();
     
-    // Clean up event listener when the component is destroyed
+    // Cleanup
     onDestroy(() => {
       window.removeEventListener('resize', resizeCanvas);
     });
@@ -241,6 +165,8 @@
 
 <div class="leaf-background">
   <canvas bind:this={canvasEl}></canvas>
+  <!-- Debug element to see if component renders -->
+  <div class="debug-info">Leaf background component loaded</div>
 </div>
 
 <style>
@@ -250,10 +176,19 @@
     left: 0;
     width: 100%;
     height: 100%;
-    /* Try different z-index values */
-    z-index: 0; /* Changed from -1 to 0 temporarily for testing */
+    z-index: 0; /* Increased from -1 to 0 - might be needed if z-index stacking is an issue */
     pointer-events: none;
-    /* Add outline for debugging */
-    outline: 2px solid red;
+  }
+  
+  .debug-info {
+    position: fixed;
+    top: 5px;
+    left: 5px;
+    background: rgba(0,0,0,0.5);
+    color: white;
+    padding: 5px;
+    font-size: 12px;
+    z-index: 9999;
+    pointer-events: none;
   }
 </style>

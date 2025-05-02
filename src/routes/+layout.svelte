@@ -1,6 +1,7 @@
 <script>
     import { page } from "$app/stores";
     import { onMount } from "svelte";
+    import LeafBackground from "$lib/LeafBackground.svelte";
 
     // Always set to dark mode
     const colorScheme = "dark";
@@ -8,7 +9,6 @@
     // Apply dark mode when component mounts
     onMount(() => {
         document.documentElement.style.setProperty("color-scheme", colorScheme);
-        // Add a class to the body for additional styling hooks
         document.body.classList.add("dark-theme");
     });
 
@@ -19,10 +19,16 @@
         {url: "/simulations", title: "Simulations"},
         {url: "/contact", title: "Contact"},
         {url: "/CV", title: "CV"},
-        /*{url: "/meta", title: "Meta"},*/
-        /*{url: "https://github.com/agrabowski5", title: "GitHub"},*/
     ];
+    
+    // Adjust leaf intensity based on the current page
+    $: leafIntensity = $page.route.id === "/contact" ? 1.5 : 
+                       $page.route.id === "/" ? 1.2 : 
+                       0.8;
 </script>
+
+<!-- Add leaf background to all pages -->
+<LeafBackground intensity={leafIntensity} />
 
 <div class="page-container">
     <nav>
@@ -56,6 +62,10 @@
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        /* Make borders visible for leaf animation */
+        border-left: 1px solid rgba(255, 255, 255, 0.1);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+        background-color: rgba(18, 18, 18, 0.9);
     }
 
     /* Navigation styles */
