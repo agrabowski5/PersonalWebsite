@@ -37,11 +37,12 @@
     let pages = [
      {url: "/", title: "Home"},
      {url: "/projects", title: "Projects"},
+     {url: "/blog", title: "Blog"},
      {url: "/simulations", title: "Simulations"},
      {url: "/contact", title: "Contact"},
      {url: "/CV", title: "CV"},
-     {url: "/meta", title: "Meta"},
-     {url: "https://github.com/agrabowski5", title: "GitHub"},
+     /*{url: "/meta", title: "Meta"},*/
+     /*{url: "https://github.com/agrabowski5", title: "GitHub"},*/
  ];
 </script>
 

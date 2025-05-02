@@ -1,0 +1,3 @@
+[submodule "AggregateReservePrice_VCGAuction_Simulation"]
+	path = AggregateReservePrice_VCGAuction_Simulation
+	url = https://github.com/agrabowski5/AggregateReservePrice_VCGAuction_Simulation.git
