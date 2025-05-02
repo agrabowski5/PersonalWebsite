@@ -78,6 +78,22 @@
             Each project represents my commitment to developing innovative approaches to environmental challenges.
         </p>
     </div>
+    
+
+    {#if filteredByYear.length === 0}
+        <div class="no-results">
+            <p>No projects match your search criteria.</p>
+            <button class="clear-filter" on:click={() => { query = ""; selectedYearIndex = -1; }}>
+                Clear all filters
+            </button>
+        </div>
+    {:else}
+        <div class="projects-grid">
+            {#each filteredByYear as p}
+                <Project data={p} />
+            {/each}
+        </div>
+    {/if}
 </div>
 
 <style>
