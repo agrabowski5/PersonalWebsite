@@ -79,6 +79,31 @@
         </p>
     </div>
     
+    <!--<div class="filters">
+        <div class="search-box">
+            <input 
+                type="search" 
+                bind:value={query}
+                aria-label="Search projects" 
+                placeholder="🔍 Search projects…" 
+            />
+        </div>
+        
+        <div class="year-filter">
+            <h3>Filter by Year</h3>
+            {#if pieData && pieData.length > 0}
+                <Pie data={pieData} bind:selectedIndex={selectedYearIndex} />
+                
+                {#if selectedYear}
+                    <button class="clear-filter" on:click={() => selectedYearIndex = -1}>
+                        Clear filter ({filteredByYear.length}/{filteredProjects.length} projects)
+                    </button>
+                {/if}
+            {:else}
+                <p>Loading chart data...</p>
+            {/if}
+        </div>
+    </div>-->
 
     {#if filteredByYear.length === 0}
         <div class="no-results">
@@ -95,6 +120,9 @@
         </div>
     {/if}
 </div>
+
+<!-- This would be saved as c:\Users\agrab\OneDrive - Massachusetts Institute of Technology\Personal\Personal_Website\static\images\aviation-noise.png -->
+<!-- You should replace this with an actual screenshot or image from your project -->
 
 <style>
     .projects-container {

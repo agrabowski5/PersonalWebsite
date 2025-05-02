@@ -1,63 +1,77 @@
 [
-	{
-		"title": "Collaborative Purchasing of Goods",
+    {
+        "title": "SAF Consumption in the airline network with custom solver and model",
+        "year": 2024,
+        "media": "videos/SAFNetworkVideo.mov",
+        "description": "Developed a mathematical model for optimizing sustainable aviation fuel distribution across airline networks to maximize emissions reductions while minimizing costs.",
+        "tags": ["optimization", "aviation", "sustainability", "network modeling"],
+        "github": "https://github.mit.edu/agrabows/SAFNetwork"
+    },
+    {
+        "title": "Collaborative Purchasing of Goods",
+        "year": 2025,
+        "image": "images/Thesis_Emission_Tracking.png",
+		"github": "https://github.com/agrabowski5/Collaborative_Purchasing_Auctions",
+        "description": "Game Theory and Mechanism Design for Collaborative Purchasing of Goods. The project aims to develop a game-theoretic model for collaborative purchasing of goods utilizing Greenhouse Gas Protocol Scope 3 emissions rules."
+    },
+    {
+        "title": "Aviation Noise's affect on Boston",
+        "year": 2024,
+        "image": "images/AviationNoiseMap.png",
+        "description": "This study explores how noise levels from Boston Logan Airport propagate across neighborhoods in Boston and Cambridge. Using a scrollytelling format, users are guided through an interactive narrative that highlights the impact of airport noise on local communities.",
+        "github": "https://github.com/agrabowski5/MBSA_AviationNoise",
+        "website": "https://agrabowski5.github.io/MBSA_AviationNoise_Deployed/"
+    },
+    {
+        "title": "SAF Location Optimization",	
+        "image": "images/SAFProductionOptimization.png",
 		"year": 2024,
-		"image": "images/Thesis_Emission_Tracking.png",
-		"description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Magnam dolor quos, quod assumenda explicabo odio, nobis ipsa laudantium quas eum veritatis ullam sint porro minima modi molestias doloribus cumque odit."
+		"github": "https://github.com/agrabowski5/SAF_Production_Optimization",
+        "description": "Uses Gurobi and Julia to optimize the location of SAF production facilities in the US. The model minimizes costs while meeting SAF demand and feedstock supply."
 	},
 	{
-		"title": "Architecto minima sed omnis?",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Est, reiciendis aspernatur debitis maxime et itaque animi sit quod quo, tempore incidunt tempora dignissimos exercitationem enim numquam quam quaerat optio laborum ut unde hic delectus laboriosam? Quasi, cupiditate corporis."
-	},
-	{
-		"title": "Asperiores rem repellendus doloremque.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Eligendi tenetur quae quos recusandae est. Cumque, voluptatem. Quo nihil dignissimos molestiae explicabo praesentium aspernatur debitis, illo rerum possimus quam ducimus earum nulla officiis maiores itaque repellat corporis soluta labore?"
-	},
-	{
-		"title": "Laudantium reprehenderit placeat perspiciatis.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Quo minus perferendis nulla corrupti repellat dolorem dolore assumenda sit minima ducimus quidem ullam, id ipsa dicta tempora laborum officiis unde possimus cumque nobis alias inventore! Ullam repudiandae iusto nam."
-	},
-	{
-		"title": "Consequuntur autem eos facere.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Laborum alias ea unde harum aspernatur? Molestiae, veritatis, possimus, numquam ex excepturi quod ducimus sit odit optio quibusdam sequi aliquid itaque tempore perspiciatis placeat expedita vero voluptates. Sit, aspernatur sint!"
-	},
-	{
-		"title": "Quos sint quaerat omnis?",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Est neque, velit nam rerum error odio voluptates voluptatem magnam laboriosam ad? Doloribus, id et itaque unde porro totam ullam quaerat blanditiis odit animi eveniet aut, voluptate velit iure odio."
-	},
-	{
-		"title": "Iste ipsam magni fuga!",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Velit omnis suscipit nemo quia? Iste maiores numquam labore quia nemo eveniet odit, modi magnam? Architecto officia sint est. Architecto iste minima consequuntur explicabo illo error sed at dolore nostrum!"
-	},
-	{
-		"title": "Ipsum, aperiam magni? Nobis.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Delectus magni, vel, quod mollitia hic rem temporibus, sint doloribus tenetur qui dolores tempore quisquam fuga nobis recusandae molestiae ipsum nostrum maxime eaque dicta aperiam eum quas beatae. At, neque."
-	},
-	{
-		"title": "Dicta nihil odit illo?",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Vitae quos laudantium officiis rerum, accusamus delectus aspernatur quas nulla, magni sed, excepturi saepe incidunt laboriosam alias at aliquam atque quisquam autem nesciunt. Minus, reprehenderit odit nam illo natus aspernatur?"
-	},
-	{
-		"title": "Vel earum nulla facilis.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Aut voluptatem sint atque corrupti accusamus necessitatibus possimus et, itaque nulla id deleniti nemo repellendus asperiores molestias laudantium, mollitia ad dicta. Laboriosam, itaque. Quos corporis, perferendis natus officiis beatae qui."
-	},
-	{
-		"title": "Nobis iste neque quaerat.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Quos, recusandae, sit rerum velit nostrum nihil quisquam tempora repellat sed quibusdam facilis. Assumenda quaerat ab, nesciunt odio facere sit, ipsa necessitatibus tempora, maiores commodi sed quae provident deserunt at?"
-	},
-	{
-		"title": "Iusto, incidunt. Totam, illum.",
-		"image": "https://vis-society.github.io/labs/2/images/empty.svg",
-		"description": "Tempore, eveniet minus velit, earum aperiam necessitatibus repellendus provident accusamus illum officiis doloribus, eum saepe est aut numquam distinctio pariatur natus totam repellat. Numquam nulla libero sapiente magnam nostrum ex."
-	}
+        "title": "Laudantium reprehenderit placeat perspiciatis.",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Quo minus perferendis nulla corrupti repellat dolorem dolore assumenda sit minima ducimus quidem ullam, id ipsa dicta tempora laborum officiis unde possimus cumque nobis alias inventore! Ullam repudiandae iusto nam."
+    },
+    {
+        "title": "Consequuntur autem eos facere.",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Laborum alias ea unde harum aspernatur? Molestiae, veritatis, possimus, numquam ex excepturi quod ducimus sit odit optio quibusdam sequi aliquid itaque tempore perspiciatis placeat expedita vero voluptates. Sit, aspernatur sint!"
+    },
+    {
+        "title": "Quos sint quaerat omnis?",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Est neque, velit nam rerum error odio voluptates voluptatem magnam laboriosam ad? Doloribus, id et itaque unde porro totam ullam quaerat blanditiis odit animi eveniet aut, voluptate velit iure odio."
+    },
+    {
+        "title": "Iste ipsam magni fuga!",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Velit omnis suscipit nemo quia? Iste maiores numquam labore quia nemo eveniet odit, modi magnam? Architecto officia sint est. Architecto iste minima consequuntur explicabo illo error sed at dolore nostrum!"
+    },
+    {
+        "title": "Ipsum, aperiam magni? Nobis.",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Delectus magni, vel, quod mollitia hic rem temporibus, sint doloribus tenetur qui dolores tempore quisquam fuga nobis recusandae molestiae ipsum nostrum maxime eaque dicta aperiam eum quas beatae. At, neque."
+    },
+    {
+        "title": "Dicta nihil odit illo?",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Vitae quos laudantium officiis rerum, accusamus delectus aspernatur quas nulla, magni sed, excepturi saepe incidunt laboriosam alias at aliquam atque quisquam autem nesciunt. Minus, reprehenderit odit nam illo natus aspernatur?"
+    },
+    {
+        "title": "Vel earum nulla facilis.",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Aut voluptatem sint atque corrupti accusamus necessitatibus possimus et, itaque nulla id deleniti nemo repellendus asperiores molestias laudantium, mollitia ad dicta. Laboriosam, itaque. Quos corporis, perferendis natus officiis beatae qui."
+    },
+    {
+        "title": "Nobis iste neque quaerat.",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Quos, recusandae, sit rerum velit nostrum nihil quisquam tempora repellat sed quibusdam facilis. Assumenda quaerat ab, nesciunt odio facere sit, ipsa necessitatibus tempora, maiores commodi sed quae provident deserunt at?"
+    },
+    {
+        "title": "Iusto, incidunt. Totam, illum.",
+        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
+        "description": "Tempore, eveniet minus velit, earum aperiam necessitatibus repellendus provident accusamus illum officiis doloribus, eum saepe est aut numquam distinctio pariatur natus totam repellat. Numquam nulla libero sapiente magnam nostrum ex."
+    }
 ]
