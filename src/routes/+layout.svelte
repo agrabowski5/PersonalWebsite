@@ -54,7 +54,7 @@
 
 <style>
     .page-container {
-        max-width: 100ch;
+        max-width: 130ch; /* Increased from 100ch to 120ch */
         margin-inline: auto;
         padding: 1rem;
         position: relative;

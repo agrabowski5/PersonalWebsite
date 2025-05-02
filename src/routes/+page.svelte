@@ -26,7 +26,7 @@
       </div>
       <div class="intro-text">
         <h1>Andrew Grabowski</h1>
-        <h2 class="subtitle">Systems Engineer & Climate Tech Specialist</h2>
+        <h2 class="subtitle">Climate Tech Researcher</h2>
         <p>
           I'm passionate about developing innovative market-based solutions for climate change mitigation.
           As a dual-degree candidate at MIT studying Engineering Management and Computer Science, 
