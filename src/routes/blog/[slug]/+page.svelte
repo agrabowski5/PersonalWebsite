@@ -8,7 +8,7 @@
         'introduction-to-auction-theory': {
             title: 'Introduction to Auction Theory',
             date: '2025-05-01',
-            author: 'Alex Grabowski',
+            author: 'Andrew Grabowski',
             content: `
 ## Understanding the Foundations
 
@@ -49,7 +49,7 @@ These advances are helping to design better markets and allocation mechanisms ac
         'mechanism-design-primer': {
             title: 'A Primer on Mechanism Design',
             date: '2025-04-15',
-            author: 'Alex Grabowski',
+            author: 'Andrew Grabowski',
             content: `
 ## The Engineering of Economics
 
@@ -90,7 +90,7 @@ However, VCG mechanisms have practical limitations, including complexity and vul
         'simulation-approaches': {
             title: 'Approaches to Economic Simulation',
             date: '2025-03-22',
-            author: 'Alex Grabowski',
+            author: 'Andrew Grabowski',
             content: `
 ## Why Simulate Economic Systems?
 

@@ -1,14 +1,3 @@
-<label class="color-scheme">
-    Theme:
-    <select bind:value={colorScheme}>
-        <option value="light dark">Auto</option>
-        <option value="dark">Dark</option>
-        <option value="light">Light</option>
-    </select>
-
-    
-</label>
-
 <nav>
     {#each pages as p}
     <a 
@@ -71,20 +60,5 @@
         color: var(--accent-color);
     }
 
-    label {
-        display: block;
-        margin-block: 1em 0.5em;
-        font-weight: bold;
-    }
-    .color-scheme {
-        position: fixed;
-        top: 1rem;
-        right: 1rem;
-        z-index: 100;
-        background-color: var(--background);
-        padding: 0.5rem;
-        border-radius: 4px;
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    }
 </style>
 

@@ -69,8 +69,8 @@
 </script>
 
 <svelte:head>
-    <title>Blog | Alex Grabowski</title>
-    <meta name="description" content="Thoughts and insights on economics, auction theory, mechanism design, and more." />
+    <title>Blog | Andrew Grabowski</title>
+    <meta name="description" content="Thoughts and insights on Climate Tech, Sustainable Finance, Game Theory, Computer Science and whatever else I'm trying to learn." />
 </svelte:head>
 
 <div class="content-section">
