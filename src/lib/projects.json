@@ -3,7 +3,7 @@
         "title": "SAF Consumption in the airline network with custom solver and model",
         "year": 2024,
         "media": "videos/SAFNetworkVideo.mov",
-        "description": "Developed a mathematical model for optimizing sustainable aviation fuel distribution across airline networks to maximize emissions reductions while minimizing costs.",
+        "description": "Developed a model for sustainable aviation fuel distribution and consumption across airline networks.",
         "tags": ["optimization", "aviation", "sustainability", "network modeling"],
         "github": "https://github.mit.edu/agrabows/SAFNetwork"
     },
@@ -12,7 +12,7 @@
         "year": 2025,
         "image": "images/Thesis_Emission_Tracking.png",
 		"github": "https://github.com/agrabowski5/Collaborative_Purchasing_Auctions",
-        "description": "Game Theory and Mechanism Design for Collaborative Purchasing of Goods. The project aims to develop a game-theoretic model for collaborative purchasing of goods utilizing Greenhouse Gas Protocol Scope 3 emissions rules."
+        "description": "Result of my Master's Thesis Work. Game Theory and Mechanism Design for Collaborative Purchasing of Goods. The project aims to develop a game-theoretic model for collaborative purchasing of goods utilizing Greenhouse Gas Protocol Scope 3 emissions rules."
     },
     {
         "title": "Aviation Noise's affect on Boston",
@@ -27,51 +27,12 @@
         "image": "images/SAFProductionOptimization.png",
 		"year": 2024,
 		"github": "https://github.com/agrabowski5/SAF_Production_Optimization",
-        "description": "Uses Gurobi and Julia to optimize the location of SAF production facilities in the US. The model minimizes costs while meeting SAF demand and feedstock supply."
+        "description": "Uses Gurobi and Julia to optimize the location of SAF production facilities in the US. The model minimizes costs while meeting SAF demand and location of feedstock supply."
 	},
 	{
-        "title": "Laudantium reprehenderit placeat perspiciatis.",
+        "title": "Climate Tech Project Financing",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quo minus perferendis nulla corrupti repellat dolorem dolore assumenda sit minima ducimus quidem ullam, id ipsa dicta tempora laborum officiis unde possimus cumque nobis alias inventore! Ullam repudiandae iusto nam."
-    },
-    {
-        "title": "Consequuntur autem eos facere.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Laborum alias ea unde harum aspernatur? Molestiae, veritatis, possimus, numquam ex excepturi quod ducimus sit odit optio quibusdam sequi aliquid itaque tempore perspiciatis placeat expedita vero voluptates. Sit, aspernatur sint!"
-    },
-    {
-        "title": "Quos sint quaerat omnis?",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Est neque, velit nam rerum error odio voluptates voluptatem magnam laboriosam ad? Doloribus, id et itaque unde porro totam ullam quaerat blanditiis odit animi eveniet aut, voluptate velit iure odio."
-    },
-    {
-        "title": "Iste ipsam magni fuga!",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Velit omnis suscipit nemo quia? Iste maiores numquam labore quia nemo eveniet odit, modi magnam? Architecto officia sint est. Architecto iste minima consequuntur explicabo illo error sed at dolore nostrum!"
-    },
-    {
-        "title": "Ipsum, aperiam magni? Nobis.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Delectus magni, vel, quod mollitia hic rem temporibus, sint doloribus tenetur qui dolores tempore quisquam fuga nobis recusandae molestiae ipsum nostrum maxime eaque dicta aperiam eum quas beatae. At, neque."
-    },
-    {
-        "title": "Dicta nihil odit illo?",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Vitae quos laudantium officiis rerum, accusamus delectus aspernatur quas nulla, magni sed, excepturi saepe incidunt laboriosam alias at aliquam atque quisquam autem nesciunt. Minus, reprehenderit odit nam illo natus aspernatur?"
-    },
-    {
-        "title": "Vel earum nulla facilis.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Aut voluptatem sint atque corrupti accusamus necessitatibus possimus et, itaque nulla id deleniti nemo repellendus asperiores molestias laudantium, mollitia ad dicta. Laboriosam, itaque. Quos corporis, perferendis natus officiis beatae qui."
-    },
-    {
-        "title": "Nobis iste neque quaerat.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quos, recusandae, sit rerum velit nostrum nihil quisquam tempora repellat sed quibusdam facilis. Assumenda quaerat ab, nesciunt odio facere sit, ipsa necessitatibus tempora, maiores commodi sed quae provident deserunt at?"
-    },
-    {
-        "title": "Iusto, incidunt. Totam, illum.",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Tempore, eveniet minus velit, earum aperiam necessitatibus repellendus provident accusamus illum officiis doloribus, eum saepe est aut numquam distinctio pariatur natus totam repellat. Numquam nulla libero sapiente magnam nostrum ex."
-    }
+        "description": "In Progress: Develop a framework for financing climate tech projects using a combination of public and private funding sources. The project aims to identify the most effective financing strategies for different types of climate tech projects, taking into account factors such as project size, location, and technology type.",
+		"year":2024	
+	}
 ]
