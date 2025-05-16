@@ -9,14 +9,16 @@ const base = dev ? '' : `/${repoName}`;
 const config = {
     preprocess: vitePreprocess(),
     kit: {
-        adapter: adapter({ fallback: 'index.html' }), // Using index.html as fallback
+        adapter: adapter({ 
+            fallback: 'index.html',
+            precompress: false
+        }),
         paths: {
             base: base, // Set base path explicitly
         },
         prerender: {
             handleHttpError: 'warn',
         },
-        trailingSlash: 'always'
     },
 };
 
