@@ -56,7 +56,8 @@
 
 <style>
     .page-container {
-        max-width: 130ch; /* Increased from 100ch to 120ch */
+        max-width: 130ch;
+        width: 100%;
         margin-inline: auto;
         padding: 1rem;
         position: relative;
@@ -76,6 +77,7 @@
         gap: 1em;
         margin-bottom: 2em;
         border-bottom: 1px solid var(--border-color);
+        width: 100%; /* Ensure full width */
     }
 
     nav a {
@@ -97,6 +99,7 @@
     
     main {
         flex: 1;
+        width: 100%; /* Ensure full width */
     }
     
     footer {

@@ -71,6 +71,8 @@
 <style>
     .blog-container {
         max-width: 100%;
+        /* Add this to ensure consistent width with other pages */
+        width: 100%;
     }
     
     .page-header {
@@ -92,10 +94,18 @@
     
     .blog-layout {
         display: block;
+        /* Add this to ensure content has a max width */
+        max-width: 100%;
+    }
+    
+    .blog-main {
+        /* Add this to ensure consistent width */
+        width: 100%;
     }
     
     .posts-grid {
         display: grid;
+        /* Adjusted to match the common width pattern in your other pages */
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
     }
