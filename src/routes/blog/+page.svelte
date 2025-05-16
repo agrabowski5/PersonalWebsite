@@ -2,6 +2,7 @@
     import { onMount } from 'svelte';
     
     let posts = [
+/*
         {
             id: 1,
             title: "The Future of Sustainable Aviation Fuel Markets",
@@ -11,47 +12,11 @@
             image: "/images/blog/saf-market.jpg",
             readTime: "7 min read"
         },
-        {
-            id: 2,
-            title: "Book and Claim Systems: Tokenizing Environmental Attributes",
-            excerpt: "How digital accounting systems can revolutionize the way we track and trade sustainability benefits.",
-            date: "2025-03-22",
-            tags: ["book-and-claim", "environmental markets", "blockchain"],
-            image: "/images/blog/book-claim.jpg",
-            readTime: "5 min read"
-        },
-        {
-            id: 3,
-            title: "Game Theory in Collaborative Climate Action",
-            excerpt: "Analyzing the strategic dynamics of multi-stakeholder climate initiatives and how to optimize outcomes.",
-            date: "2025-02-10",
-            tags: ["game theory", "climate policy", "collaboration"],
-            image: "/images/blog/game-theory.jpg",
-            readTime: "9 min read"
-        },
-        {
-            id: 4,
-            title: "Systems Engineering Approaches to Decarbonization",
-            excerpt: "Applying systems thinking to complex climate challenges for more effective solutions.",
-            date: "2025-01-05",
-            tags: ["systems engineering", "decarbonization", "case study"],
-            image: "/images/blog/systems-engineering.jpg",
-            readTime: "6 min read"
-        }
+        // ...other posts...
+            */
     ];
     
-    let categories = ["All", "Market Design", "Technology", "Policy", "Research"];
-    let selectedCategory = "All";
-    
-    function filterByCategory(category) {
-        selectedCategory = category;
-    }
-    
-    $: filteredPosts = selectedCategory === "All" ? 
-        posts : 
-        posts.filter(post => post.tags.some(tag => 
-            tag.toLowerCase().includes(selectedCategory.toLowerCase())
-        ));
+    $: filteredPosts = posts;
 </script>
 
 <svelte:head>
@@ -69,33 +34,6 @@
     </div>
     
     <div class="blog-layout">
-        <div class="blog-sidebar">
-            <div class="categories">
-                <h2>Categories</h2>
-                <ul class="category-list">
-                    {#each categories as category}
-                        <li>
-                            <button 
-                                class:active={selectedCategory === category}
-                                on:click={() => filterByCategory(category)}
-                            >
-                                {category}
-                            </button>
-                        </li>
-                    {/each}
-                </ul>
-            </div>
-            
-            <div class="newsletter">
-                <h2>Newsletter</h2>
-                <p>Subscribe to get my latest posts and research updates.</p>
-                <form>
-                    <input type="email" placeholder="Your email address" required>
-                    <button type="submit">Subscribe</button>
-                </form>
-            </div>
-        </div>
-        
         <div class="blog-main">
             <div class="posts-grid">
                 {#each filteredPosts as post}
@@ -123,8 +61,7 @@
             
             {#if filteredPosts.length === 0}
                 <div class="no-posts">
-                    <p>No posts found in this category.</p>
-                    <button on:click={() => selectedCategory = "All"}>View all posts</button>
+                    <p>No posts available at this time.</p>
                 </div>
             {/if}
         </div>
@@ -154,87 +91,9 @@
     }
     
     .blog-layout {
-        display: grid;
-        grid-template-columns: 1fr 3fr;
-        gap: 2rem;
+        display: block;
     }
     
-    /* Sidebar */
-    .blog-sidebar {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-    }
-    
-    .categories h2, .newsletter h2 {
-        font-size: 1.5rem;
-        margin-bottom: 1rem;
-        color: var(--text-primary);
-    }
-    
-    .category-list {
-        list-style: none;
-        padding: 0;
-    }
-    
-    .category-list li {
-        margin-bottom: 0.5rem;
-    }
-    
-    .category-list button {
-        background: none;
-        border: none;
-        color: var(--text-secondary);
-        cursor: pointer;
-        padding: 0.5rem 0;
-        text-align: left;
-        width: 100%;
-        transition: color 0.2s;
-    }
-    
-    .category-list button:hover {
-        color: var(--color-accent);
-    }
-    
-    .category-list button.active {
-        color: var(--color-accent);
-        font-weight: bold;
-    }
-    
-    .newsletter p {
-        margin-bottom: 1rem;
-    }
-    
-    .newsletter form {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-    }
-    
-    .newsletter input {
-        padding: 0.75rem;
-        border: 1px solid var(--border-color);
-        border-radius: 4px;
-        background-color: var(--bg-secondary);
-        color: var(--text-primary);
-    }
-    
-    .newsletter button {
-        padding: 0.75rem;
-        background-color: var(--color-accent);
-        color: black;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: background-color 0.2s;
-    }
-    
-    .newsletter button:hover {
-        background-color: var(--color-accent-dark);
-    }
-    
-    /* Blog posts grid */
     .posts-grid {
         display: grid;
         grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -329,33 +188,7 @@
         border-radius: 8px;
     }
     
-    .no-posts button {
-        background: none;
-        border: 1px solid var(--color-accent);
-        color: var(--color-accent);
-        padding: 0.5rem 1rem;
-        border-radius: 4px;
-        cursor: pointer;
-        margin-top: 1rem;
-    }
-    
-    .no-posts button:hover {
-        background-color: rgba(46, 204, 113, 0.1);
-    }
-    
     @media (max-width: 900px) {
-        .blog-layout {
-            grid-template-columns: 1fr;
-        }
-        
-        .blog-sidebar {
-            order: 2;
-        }
-        
-        .blog-main {
-            order: 1;
-        }
-        
         .posts-grid {
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
         }
