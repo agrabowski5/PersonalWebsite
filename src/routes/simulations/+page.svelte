@@ -1,9 +1,7 @@
 <script>
     import { onMount } from 'svelte';
+    import { base } from '$app/paths';  // Import the base path
     
-    
-  
-
     let simulations = [
         {
             id: "env-attribute",
@@ -12,7 +10,8 @@
             thumbnail: "/images/simulations/auction-simulation.jpg",
             categories: ["market", "auction", "sustainability"],
             interactive: true,
-            link: "/simulations/env-attribute"
+            // Use base path in links
+            get link() { return `${base}/simulations/env-attribute`; }
         },
         {
             id: "saf-market",
@@ -21,7 +20,7 @@
             thumbnail: "/images/simulations/saf-simulation.jpg",
             categories: ["market", "aviation", "policy"],
             interactive: true,
-            link: "/simulations/saf-market"
+            get link() { return `${base}/simulations/saf-market`; }
         },
         {
             id: "carbon-pricing",
@@ -30,7 +29,7 @@
             thumbnail: "/images/simulations/carbon-simulation.jpg",
             categories: ["economics", "policy", "climate"],
             interactive: true,
-            link: "/simulations/carbon-pricing"
+            get link() { return `${base}/simulations/carbon-pricing`; }
         },
         {
             id: "emissions-trading",
@@ -39,7 +38,7 @@
             thumbnail: "/images/simulations/bookclaim-simulation.jpg",
             categories: ["market", "accounting", "visualization"],
             interactive: false,
-            link: "/simulations/book-claim"
+            get link() { return `${base}/simulations/book-claim`; }
         },
         {
             id: "GreenBond",
@@ -48,7 +47,7 @@
             thumbnail: "",
             categories: ["market", "trading", "policy"],
             interactive: true,
-            link: "/simulations/emissions-trading"
+            get link() { return `${base}/simulations/emissions-trading`; }
         },
         {
             id: "InvestmentAnalysis",
@@ -57,7 +56,7 @@
             thumbnail: "",
             categories: ["supply chain", "emissions"],
             interactive: false,
-            link: "/simulations/supply-chain"
+            get link() { return `${base}/simulations/supply-chain`; }
         }
     ];
     
@@ -66,11 +65,9 @@
     
     let selectedCategory = "All";
     
-    
     $: filteredSimulations = selectedCategory === "All" ? 
         simulations : 
         simulations.filter(sim => sim.categories.includes(selectedCategory));
-
 </script>
 
 <svelte:head>
