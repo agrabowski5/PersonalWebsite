@@ -1,5 +1,6 @@
 <script>
     import { page } from "$app/stores";
+    import { base } from "$app/paths"; // Import the base path
     import { onMount } from "svelte";
     import LeafBackground from "$lib/LeafBackground.svelte";
 
@@ -12,13 +13,14 @@
         document.body.classList.add("dark-theme");
     });
 
+    // Use base path for navigation links
     let pages = [
-        {url: "/", title: "Home"},
-        {url: "/projects", title: "Projects"},
-        {url: "/blog", title: "Blog"},
-        {url: "/simulations", title: "Simulations"},
-        {url: "/contact", title: "Contact"},
-        {url: "/CV", title: "CV"},
+        {url: `${base}/`, title: "Home"},
+        {url: `${base}/projects`, title: "Projects"},
+        {url: `${base}/blog`, title: "Blog"},
+        {url: `${base}/simulations`, title: "Simulations"},
+        {url: `${base}/contact`, title: "Contact"},
+        {url: `${base}/CV`, title: "CV"},
     ];
     
     // Adjust leaf intensity based on the current page
