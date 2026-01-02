@@ -51,7 +51,7 @@
                                     <span class="tag">{tag}</span>
                                 {/each}
                             </div>
-                            <a href={`/blog/${post.id}`} class="read-more">Read more</a>
+                            <a href={`${base}/blog/${post.id}`} class="read-more">Read more</a>
                         </div>
                     </article>
                 {/each}

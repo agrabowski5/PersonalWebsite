@@ -263,14 +263,14 @@ Through this exploration, we looked at the current state of the steel market and
         </div>
 
         <div class="post-footer">
-            <a href="/blog" class="back-to-blog">← Back to Blog</a>
+            <a href={`${base}/blog`} class="back-to-blog">← Back to Blog</a>
         </div>
     </article>
 {:else}
     <div class="not-found">
         <h1>Blog Post Not Found</h1>
         <p>Sorry, we couldn't find the blog post you're looking for.</p>
-        <a href="/blog" class="back-to-blog">← Back to Blog</a>
+        <a href={`${base}/blog`} class="back-to-blog">← Back to Blog</a>
     </div>
 {/if}
 
