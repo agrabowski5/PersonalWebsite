@@ -147,7 +147,7 @@ Today, the world's largest steel producer is China, with over 50% of steel creat
 These industries are dirty, and energy intensive. Depending on the process, 1 MT of steel could require 2 tonnes of CO₂ emitted. Steel is fundamentally an alloy of iron and up to 2% carbon with other elements to obtain particular properties. For instance, higher carbon means stronger, but more brittle steel. These emissions come from both the energy intensity with the extreme heat required of 1500°C to actually melt the iron, but also the current need for carbon sources to remove the oxygen from natural iron ore.
 
 <div class="content-image">
-    <img src="/images/blog/steel-production-diagram.png" alt="Steel Production Process Diagram" />
+    <img src="${base}/images/blog/steel-production-diagram.jpg" alt="Steel Production Process Diagram" />
     <p class="image-caption">The Making, Shaping and Treating of Steel - Source: <a href="https://www.steel.org/steel-technology/steel-production/" target="_blank" rel="noopener noreferrer">American Iron and Steel Institute</a></p>
 </div>
 
