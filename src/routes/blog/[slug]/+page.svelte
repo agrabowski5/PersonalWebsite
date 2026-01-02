@@ -200,12 +200,14 @@ Through this exploration, we looked at the current state of the steel market and
     });
 </script>
 
-{#if currentPost}
-    <svelte:head>
-        <title>{currentPost.title} | Andrew Grabowski</title>
+<svelte:head>
+    <title>{currentPost ? currentPost.title : 'Blog Post'} | Andrew Grabowski</title>
+    {#if currentPost}
         <meta name="description" content={currentPost.content.slice(0, 160)} />
-    </svelte:head>
+    {/if}
+</svelte:head>
 
+{#if currentPost}
     <article class="blog-post">
         {#if currentPost.image}
             <div class="post-header-image">
