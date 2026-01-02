@@ -7,7 +7,7 @@
             id: "env-attribute",
             title: "Environmental Attribute Auction Simulator",
             description: "Explore auction mechanisms for environmental attributes like Sustainable Aviation Fuel certificates and analyze bidder strategies.",
-            thumbnail: "/images/simulations/auction-simulation.jpg",
+            thumbnail: "/images/SAFProductionOptimization.png",
             categories: ["market", "auction", "sustainability"],
             interactive: true,
             // Use base path in links
@@ -17,7 +17,7 @@
             id: "saf-market",
             title: "Sustainable Aviation Fuel Market Dynamics",
             description: "Explore how different policy interventions affect SAF adoption rates and market growth.",
-            thumbnail: "/images/simulations/saf-simulation.jpg",
+            thumbnail: "/images/SAFProductionOptimization.png",
             categories: ["market", "aviation", "policy"],
             interactive: true,
             get link() { return `${base}/simulations/saf-market`; }
@@ -26,7 +26,7 @@
             id: "carbon-pricing",
             title: "Carbon Pricing Impact Simulator",
             description: "See how different carbon pricing mechanisms affect emissions across industrial sectors.",
-            thumbnail: "/images/simulations/carbon-simulation.jpg",
+            thumbnail: "/images/Thesis_Emission_Tracking.png",
             categories: ["economics", "policy", "climate"],
             interactive: true,
             get link() { return `${base}/simulations/carbon-pricing`; }
@@ -35,7 +35,7 @@
             id: "emissions-trading",
             title: "Emissions Trading Simulation",
             description: "Visual representation of environmental attribute tracking in a book and claim system.",
-            thumbnail: "/images/simulations/bookclaim-simulation.jpg",
+            thumbnail: "/images/AviationNoiseMap.png",
             categories: ["market", "accounting", "visualization"],
             interactive: false,
             get link() { return `${base}/simulations/book-claim`; }
@@ -44,7 +44,7 @@
             id: "GreenBond",
             title: "Green Bond Impact Assessment Framework",
             description: "",
-            thumbnail: "",
+            thumbnail: "/images/GrabowskiMITPhoto.jpg",
             categories: ["market", "trading", "policy"],
             interactive: true,
             get link() { return `${base}/simulations/emissions-trading`; }
@@ -53,7 +53,7 @@
             id: "InvestmentAnalysis",
             title: "Climate Tech Investment Analysis Tool",
             description: ".",
-            thumbnail: "",
+            thumbnail: "/images/GrabowskiMITPhoto.jpg",
             categories: ["supply chain", "emissions"],
             interactive: false,
             get link() { return `${base}/simulations/supply-chain`; }
