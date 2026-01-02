@@ -2,18 +2,15 @@
     import { onMount } from 'svelte';
     
     let posts = [
-/*
         {
-            id: 1,
-            title: "The Future of Sustainable Aviation Fuel Markets",
-            excerpt: "Exploring innovative financial mechanisms to scale SAF adoption and overcome market barriers.",
-            date: "2025-04-15",
-            tags: ["aviation", "sustainability", "market design"],
-            image: "/images/blog/saf-market.jpg",
-            readTime: "7 min read"
-        },
-        // ...other posts...
-            */
+            id: 'understanding-steel-industry-green-steel',
+            title: "Understanding the Steel Industry and the Path to Green Steel",
+            excerpt: "A deep dive into the steel industry, its massive carbon footprint, and emerging technologies like Molten Oxide Electrolysis that promise a greener future for this critical industry.",
+            date: "2026-01-01",
+            tags: ["steel", "green technology", "climate", "industrial decarbonization"],
+            image: "/images/blog/green-steel.jpg",
+            readTime: "8 min read"
+        }
     ];
     
     $: filteredPosts = posts;
