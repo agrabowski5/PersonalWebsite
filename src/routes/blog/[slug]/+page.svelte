@@ -186,7 +186,228 @@ However, many complications arise:
 Through this exploration, we looked at the current state of the steel market and explored how the future may look from a technology standpoint. Overall, steel is a huge component of our economy and is critical to maintaining environmental goals. Thank you all for your time and I hope you learned something!
             `,
             tags: ['steel', 'green technology', 'climate', 'industrial decarbonization', 'book and claim'],
-            image: '/images/blog/green-steel.jpg'
+            image: '/images/blog/green-steel.jpg',
+            imageSource: 'https://www.steel.org/steel-technology/steel-production/'
         },
     };
+
+    let currentPost = null;
+    let slug = '';
+
+    onMount(() => {
+        slug = $page.params.slug;
+        currentPost = blogPosts[slug];
+    });
 </script>
+
+{#if currentPost}
+    <svelte:head>
+        <title>{currentPost.title} | Andrew Grabowski</title>
+        <meta name="description" content={currentPost.content.slice(0, 160)} />
+    </svelte:head>
+
+    <article class="blog-post">
+        {#if currentPost.image}
+            <div class="post-header-image">
+                <img src={currentPost.image} alt={currentPost.title} />
+                {#if currentPost.imageSource}
+                    <p class="image-source">Image source: <a href={currentPost.imageSource} target="_blank" rel="noopener noreferrer">{currentPost.imageSource}</a></p>
+                {/if}
+            </div>
+        {/if}
+
+        <header class="post-header">
+            <h1>{currentPost.title}</h1>
+            <div class="post-metadata">
+                <span class="post-author">By {currentPost.author}</span>
+                <span class="post-date">{new Date(currentPost.date).toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})}</span>
+            </div>
+            {#if currentPost.tags}
+                <div class="post-tags">
+                    {#each currentPost.tags as tag}
+                        <span class="tag">{tag}</span>
+                    {/each}
+                </div>
+            {/if}
+        </header>
+
+        <div class="post-content">
+            {@html currentPost.content.split('\n').map(line => {
+                // Convert markdown-style headers
+                if (line.startsWith('### ')) {
+                    return `<h3>${line.slice(4)}</h3>`;
+                } else if (line.startsWith('## ')) {
+                    return `<h2>${line.slice(3)}</h2>`;
+                } else if (line.startsWith('# ')) {
+                    return `<h1>${line.slice(2)}</h1>`;
+                }
+                // Convert bold text **text**
+                line = line.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+                // Convert markdown lists
+                if (line.match(/^\d+\.\s/)) {
+                    return `<li>${line.replace(/^\d+\.\s/, '')}</li>`;
+                } else if (line.startsWith('- ')) {
+                    return `<li>${line.slice(2)}</li>`;
+                }
+                // Regular paragraphs
+                return line.trim() ? `<p>${line}</p>` : '';
+            }).join('\n')}
+        </div>
+
+        <div class="post-footer">
+            <a href="/blog" class="back-to-blog">← Back to Blog</a>
+        </div>
+    </article>
+{:else}
+    <div class="not-found">
+        <h1>Blog Post Not Found</h1>
+        <p>Sorry, we couldn't find the blog post you're looking for.</p>
+        <a href="/blog" class="back-to-blog">← Back to Blog</a>
+    </div>
+{/if}
+
+<style>
+    .blog-post {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .post-header-image {
+        width: 100%;
+        margin-bottom: 2rem;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .post-header-image img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .image-source {
+        margin-top: 0.5rem;
+        font-size: 0.85rem;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    .image-source a {
+        color: var(--color-accent);
+        text-decoration: none;
+    }
+
+    .image-source a:hover {
+        text-decoration: underline;
+    }
+
+    .post-header {
+        margin-bottom: 2rem;
+    }
+
+    .post-header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+        line-height: 1.2;
+    }
+
+    .post-metadata {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+        color: var(--text-muted);
+        font-size: 0.9rem;
+    }
+
+    .post-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+    }
+
+    .tag {
+        background-color: rgba(46, 204, 113, 0.1);
+        color: var(--color-accent-light);
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.85rem;
+    }
+
+    .post-content {
+        line-height: 1.8;
+        font-size: 1.05rem;
+    }
+
+    .post-content :global(h2) {
+        font-size: 1.8rem;
+        margin-top: 2.5rem;
+        margin-bottom: 1rem;
+        color: var(--text-primary);
+    }
+
+    .post-content :global(h3) {
+        font-size: 1.4rem;
+        margin-top: 2rem;
+        margin-bottom: 0.75rem;
+        color: var(--text-primary);
+    }
+
+    .post-content :global(p) {
+        margin-bottom: 1.25rem;
+    }
+
+    .post-content :global(li) {
+        margin-bottom: 0.5rem;
+        margin-left: 1.5rem;
+    }
+
+    .post-content :global(strong) {
+        color: var(--text-primary);
+        font-weight: 600;
+    }
+
+    .post-footer {
+        margin-top: 3rem;
+        padding-top: 2rem;
+        border-top: 1px solid var(--border-color);
+    }
+
+    .back-to-blog {
+        display: inline-block;
+        color: var(--color-accent);
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+
+    .back-to-blog:hover {
+        color: var(--color-accent-light);
+    }
+
+    .not-found {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 4rem 0;
+    }
+
+    .not-found h1 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+        .post-header h1 {
+            font-size: 2rem;
+        }
+
+        .post-content {
+            font-size: 1rem;
+        }
+
+        .post-metadata {
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+    }
+</style>
