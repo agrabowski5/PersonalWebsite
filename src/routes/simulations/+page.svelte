@@ -91,7 +91,7 @@
         {#each filteredSimulations as sim}
             <a href={sim.link} class="simulation-card">
                 <div class="simulation-thumbnail">
-                    <img src={sim.thumbnail || "/images/simulations/placeholder.jpg"} alt={sim.title}>
+                    <img src={`${base}${sim.thumbnail || '/images/simulations/placeholder.jpg'}`} alt={sim.title}>
                     {#if sim.interactive}
                         <div class="interactive-badge">Interactive</div>
                     {/if}
