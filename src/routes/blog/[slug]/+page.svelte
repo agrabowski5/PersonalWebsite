@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import { page } from '$app/stores';
+    import { base } from '$app/paths';
     
     // This would typically come from a CMS or data file
     // For now, we'll use a simple lookup object
@@ -216,7 +217,7 @@ Through this exploration, we looked at the current state of the steel market and
     <article class="blog-post">
         {#if currentPost.image}
             <div class="post-header-image">
-                <img src={currentPost.image} alt={currentPost.title} />
+                <img src={`${base}${currentPost.image}`} alt={currentPost.title} />
                 {#if currentPost.imageSource}
                     <p class="image-source">Image source: <a href={currentPost.imageSource} target="_blank" rel="noopener noreferrer">{currentPost.imageSource}</a></p>
                 {/if}

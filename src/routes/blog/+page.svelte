@@ -1,5 +1,6 @@
 <script>
     import { onMount } from 'svelte';
+    import { base } from '$app/paths';
     
     let posts = [
         {
@@ -36,7 +37,7 @@
                 {#each filteredPosts as post}
                     <article class="post-card">
                         <div class="post-image">
-                            <img src={post.image || "/images/blog/placeholder.jpg"} alt={post.title}>
+                            <img src={`${base}${post.image || '/images/blog/placeholder.jpg'}`} alt={post.title}>
                             <div class="post-meta">
                                 <span class="post-date">{new Date(post.date).toLocaleDateString('en-US', {year: 'numeric', month: 'short', day: 'numeric'})}</span>
                                 <span class="read-time">{post.readTime}</span>
