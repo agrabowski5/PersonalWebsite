@@ -145,6 +145,11 @@ Today, the world's largest steel producer is China, with over 50% of steel creat
 
 These industries are dirty, and energy intensive. Depending on the process, 1 MT of steel could require 2 tonnes of CO₂ emitted. Steel is fundamentally an alloy of iron and up to 2% carbon with other elements to obtain particular properties. For instance, higher carbon means stronger, but more brittle steel. These emissions come from both the energy intensity with the extreme heat required of 1500°C to actually melt the iron, but also the current need for carbon sources to remove the oxygen from natural iron ore.
 
+<div class="content-image">
+    <img src="/images/blog/steel-production-diagram.png" alt="Steel Production Process Diagram" />
+    <p class="image-caption">The Making, Shaping and Treating of Steel - Source: <a href="https://www.steel.org/steel-technology/steel-production/" target="_blank" rel="noopener noreferrer">American Iron and Steel Institute</a></p>
+</div>
+
 ### Traditional Production Methods
 
 Before we jump into how we can clean up this industry, let's discuss how it's done today. Today it has a primary approach from virgin iron ore called **Blast Furnace plus Basic Oxygen Furnace (BF-BOF)**. We also use a secondary approach to help with scrap or recycled steel using an **Electric Arc Furnace (EAF)**.
@@ -366,6 +371,34 @@ Through this exploration, we looked at the current state of the steel market and
     .post-content :global(strong) {
         color: var(--text-primary);
         font-weight: 600;
+    }
+
+    .post-content :global(.content-image) {
+        margin: 2rem 0;
+        text-align: center;
+    }
+
+    .post-content :global(.content-image img) {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .post-content :global(.image-caption) {
+        margin-top: 0.75rem;
+        font-size: 0.9rem;
+        color: var(--text-muted);
+        font-style: italic;
+    }
+
+    .post-content :global(.image-caption a) {
+        color: var(--color-accent);
+        text-decoration: none;
+    }
+
+    .post-content :global(.image-caption a:hover) {
+        text-decoration: underline;
     }
 
     .post-footer {
