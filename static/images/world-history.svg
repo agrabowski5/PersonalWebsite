@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240" width="400" height="240">
+  <rect width="400" height="240" fill="#1a1a2e"/>
+  <!-- Globe outline -->
+  <circle cx="200" cy="110" r="70" fill="none" stroke="#2ecc71" stroke-width="2" opacity="0.8"/>
+  <ellipse cx="200" cy="110" rx="70" ry="25" fill="none" stroke="#2ecc71" stroke-width="1" opacity="0.3"/>
+  <ellipse cx="200" cy="110" rx="25" ry="70" fill="none" stroke="#2ecc71" stroke-width="1" opacity="0.3"/>
+  <!-- Simplified continents -->
+  <g fill="#2ecc71" opacity="0.4">
+    <!-- Americas-ish -->
+    <path d="M170,65 Q175,70 172,85 Q168,95 175,105 Q170,115 165,125 Q170,140 168,155 Q172,160 170,165" fill="none" stroke="#2ecc71" stroke-width="3"/>
+    <!-- Europe/Africa-ish -->
+    <path d="M205,55 Q215,60 218,70 Q220,80 215,90 Q210,100 212,115 Q215,130 210,145 Q208,155 212,165" fill="none" stroke="#2ecc71" stroke-width="3"/>
+    <!-- Asia-ish -->
+    <path d="M230,60 Q245,65 250,75 Q255,85 250,95 Q240,100 245,110" fill="none" stroke="#2ecc71" stroke-width="3"/>
+  </g>
+  <!-- Timeline bar at bottom -->
+  <line x1="60" y1="200" x2="340" y2="200" stroke="#2ecc71" stroke-width="2" opacity="0.5"/>
+  <g fill="#2ecc71" font-family="system-ui" font-size="9" opacity="0.6" text-anchor="middle">
+    <text x="60" y="215">1000 BC</text>
+    <text x="130" y="215">500 BC</text>
+    <text x="200" y="215">0 AD</text>
+    <text x="270" y="215">1000 AD</text>
+    <text x="340" y="215">2000 AD</text>
+  </g>
+  <!-- Timeline dots -->
+  <circle cx="60" cy="200" r="3" fill="#2ecc71"/><circle cx="130" cy="200" r="3" fill="#2ecc71"/>
+  <circle cx="200" cy="200" r="3" fill="#2ecc71"/><circle cx="270" cy="200" r="3" fill="#2ecc71"/>
+  <circle cx="340" cy="200" r="3" fill="#27ae60"/>
+  <!-- Moving marker -->
+  <circle cx="240" cy="200" r="5" fill="#2ecc71" opacity="0.9"/>
+</svg>

@@ -79,21 +79,21 @@
         </p>
     </div>
     
-    <!--<div class="filters">
+    <div class="filters">
         <div class="search-box">
-            <input 
-                type="search" 
+            <input
+                type="search"
                 bind:value={query}
-                aria-label="Search projects" 
-                placeholder="🔍 Search projects…" 
+                aria-label="Search projects"
+                placeholder="Search projects…"
             />
         </div>
-        
+
         <div class="year-filter">
             <h3>Filter by Year</h3>
             {#if pieData && pieData.length > 0}
                 <Pie data={pieData} bind:selectedIndex={selectedYearIndex} />
-                
+
                 {#if selectedYear}
                     <button class="clear-filter" on:click={() => selectedYearIndex = -1}>
                         Clear filter ({filteredByYear.length}/{filteredProjects.length} projects)
@@ -103,7 +103,7 @@
                 <p>Loading chart data...</p>
             {/if}
         </div>
-    </div>-->
+    </div>
 
     {#if filteredByYear.length === 0}
         <div class="no-results">

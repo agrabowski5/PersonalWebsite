@@ -1,38 +1,110 @@
 [
     {
-        "title": "SAF Consumption in the airline network with custom solver and model",
+        "title": "Collaborative Purchasing of Goods",
+        "year": 2025,
+        "image": "images/thesis.svg",
+        "github": "https://github.com/agrabowski5/Collaborative_Purchasing_Auctions",
+        "description": "Master's Thesis: Game theory and mechanism design for collaborative purchasing of goods using GHG Protocol Scope 3 emissions rules. Develops VCG-based auction mechanisms for multi-buyer environmental attribute procurement.",
+        "tags": ["game theory", "mechanism design", "sustainability", "thesis"]
+    },
+    {
+        "title": "CANOPI Grid Strategy Platform",
+        "year": 2025,
+        "image": "images/canopi.svg",
+        "github": "https://github.com/agrabowski5/CANOPI_Prototyping",
+        "description": "Web-based grid strategy planning platform for energy asset developers. Features interactive Mapbox maps, n-1 contingency analysis, and real-time scenario planning powered by the CANOPI optimization algorithm for renewable energy siting.",
+        "tags": ["energy", "optimization", "react", "python", "mapbox"]
+    },
+    {
+        "title": "ClimateDigest",
+        "year": 2025,
+        "image": "images/ClimateDigest.png",
+        "github": "https://github.com/agrabowski5/ClimateDigest",
+        "description": "Mobile and web app for researching climate and energy impacts with AI-powered insights. Built with Next.js and Claude AI, with native iOS support via Capacitor.",
+        "tags": ["climate", "AI", "next.js", "mobile"]
+    },
+    {
+        "title": "SAF Multi-Category Auction",
+        "year": 2025,
+        "image": "images/saf-auction.svg",
+        "github": "https://github.com/agrabowski5/saf-auction-platform",
+        "description": "Multiple Category Vickrey Auction system for Sustainable Aviation Fuel procurement. Implements DSIC properties, aggregate reserve pricing, real-time monitoring, and PDF export for supply chain cost-sharing.",
+        "tags": ["auctions", "aviation", "sustainability", "next.js"]
+    },
+    {
+        "title": "World History Map",
+        "year": 2025,
+        "image": "images/world-history.svg",
+        "description": "Interactive animated world map visualizing 3,000 years of political history. Features smooth territorial transitions, an epoch timeline slider, and AI-generated historical narratives powered by Claude.",
+        "tags": ["d3.js", "history", "visualization", "AI"]
+    },
+    {
+        "title": "LCA Taxonomy Builder",
+        "year": 2025,
+        "image": "images/taxonomy.svg",
+        "github": "https://github.com/agrabowski5/TaxonomyViewing",
+        "description": "Life Cycle Assessment taxonomy builder integrating Ecoinvent, USLCI, BAFU, Exiobase, and GABI databases. Features interactive tree construction, fuzzy cross-database mapping, and import/export.",
+        "tags": ["LCA", "react", "data", "sustainability"]
+    },
+    {
+        "title": "Interconnection Queue Simulation",
+        "year": 2025,
+        "image": "images/interconnection.svg",
+        "description": "Game-theoretic simulation engine for electrical grid interconnection queue analysis. Uses Monte Carlo methods, Nash equilibrium computation, and interactive Streamlit dashboards.",
+        "tags": ["game theory", "energy", "python", "simulation"]
+    },
+    {
+        "title": "Sky's Big Green Flight",
+        "year": 2025,
+        "image": "images/childrens-book.svg",
+        "description": "Interactive children's storybook about Sustainable Aviation Fuel and green aviation. Features animated parchment-styled pages with a responsive, touch-friendly narrative experience.",
+        "tags": ["education", "react", "storytelling", "sustainability"]
+    },
+    {
+        "title": "Climate Job Scanner",
+        "year": 2025,
+        "image": "images/job-hunter.svg",
+        "description": "Automated scraper targeting climate and energy investing companies, delivering daily HTML email reports. Scrapes Crunchbase, climate job boards, and investor career pages.",
+        "tags": ["automation", "python", "web scraping"]
+    },
+    {
+        "title": "SAF Network Optimization",
         "year": 2024,
         "media": "videos/SAFNetworkVideo.mov",
-        "description": "Developed a model for sustainable aviation fuel distribution and consumption across airline networks.",
+        "description": "Custom solver and optimization model for sustainable aviation fuel distribution and consumption across airline networks.",
         "tags": ["optimization", "aviation", "sustainability", "network modeling"],
         "github": "https://github.mit.edu/agrabows/SAFNetwork"
     },
     {
-        "title": "Collaborative Purchasing of Goods",
-        "year": 2025,
-        "image": "images/Thesis_Emission_Tracking.png",
-		"github": "https://github.com/agrabowski5/Collaborative_Purchasing_Auctions",
-        "description": "Result of my Master's Thesis Work. Game Theory and Mechanism Design for Collaborative Purchasing of Goods. The project aims to develop a game-theoretic model for collaborative purchasing of goods utilizing Greenhouse Gas Protocol Scope 3 emissions rules."
-    },
-    {
-        "title": "Aviation Noise's affect on Boston",
+        "title": "Aviation Noise Impact on Boston",
         "year": 2024,
         "image": "images/AviationNoiseMap.png",
-        "description": "This study explores how noise levels from Boston Logan Airport propagate across neighborhoods in Boston and Cambridge. Using a scrollytelling format, users are guided through an interactive narrative that highlights the impact of airport noise on local communities.",
+        "description": "Interactive scrollytelling study of how noise from Boston Logan Airport propagates across neighborhoods in Boston and Cambridge.",
         "github": "https://github.com/agrabowski5/MBSA_AviationNoise",
-        "website": "https://agrabowski5.github.io/MBSA_AviationNoise_Deployed/"
+        "website": "https://agrabowski5.github.io/MBSA_AviationNoise_Deployed/",
+        "tags": ["visualization", "aviation", "scrollytelling", "d3.js"]
     },
     {
-        "title": "SAF Location Optimization",	
+        "title": "SAF Production Siting",
         "image": "images/SAFProductionOptimization.png",
-		"year": 2024,
-		"github": "https://github.com/agrabowski5/SAF_Production_Optimization",
-        "description": "Uses Gurobi and Julia to optimize the location of SAF production facilities in the US. The model minimizes costs while meeting SAF demand and location of feedstock supply."
-	},
-	{
+        "year": 2024,
+        "github": "https://github.com/agrabowski5/SAF_Production_Optimization",
+        "description": "Gurobi + Julia optimization model for SAF production facility placement in the US, minimizing costs while meeting demand and feedstock supply constraints.",
+        "tags": ["optimization", "julia", "aviation", "sustainability"]
+    },
+    {
+        "title": "D&D Homebrew Toolkit",
+        "year": 2024,
+        "image": "images/d20.svg",
+        "github": "https://github.com/agrabowski5/DungeonsandDragons",
+        "description": "Web app for creating and managing custom Dungeons & Dragons homebrew content with Firebase-backed persistent storage.",
+        "tags": ["gaming", "firebase", "vite"]
+    },
+    {
         "title": "Climate Tech Project Financing",
-        "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "In Progress: Develop a framework for financing climate tech projects using a combination of public and private funding sources. The project aims to identify the most effective financing strategies for different types of climate tech projects, taking into account factors such as project size, location, and technology type.",
-		"year":2024	
-	}
+        "image": "images/climate-finance.svg",
+        "description": "In Progress: Framework for financing climate tech projects using public-private funding combinations, optimizing strategies by project size, location, and technology type.",
+        "year": 2024,
+        "tags": ["climate", "finance", "framework"]
+    }
 ]

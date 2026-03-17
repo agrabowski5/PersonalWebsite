@@ -1,6 +1,7 @@
 <script>
   import projects from "$lib/projects.json";
   import Project from "$lib/Project.svelte";
+  import { base } from "$app/paths";
   import { onMount } from "svelte";
 
   let githubData = null;
@@ -79,7 +80,7 @@
       {/each}
     </div>
     <div class="view-more">
-      <a href="/projects" class="button">View All Projects</a>
+      <a href="{base}/projects" class="button">View All Projects</a>
     </div>
   </section>
 </div>
