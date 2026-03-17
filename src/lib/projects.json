@@ -28,6 +28,7 @@
         "year": 2025,
         "image": "images/saf-auction.svg",
         "github": "https://github.com/agrabowski5/saf-auction-platform",
+        "website": "https://saf-auction-platform.vercel.app",
         "description": "Multiple Category Vickrey Auction system for Sustainable Aviation Fuel procurement. Implements DSIC properties, aggregate reserve pricing, real-time monitoring, and PDF export for supply chain cost-sharing.",
         "tags": ["auctions", "aviation", "sustainability", "next.js"]
     },
@@ -35,6 +36,7 @@
         "title": "World History Map",
         "year": 2025,
         "image": "images/world-history.svg",
+        "github": "https://github.com/agrabowski5/WorldHistoryMap",
         "description": "Interactive animated world map visualizing 3,000 years of political history. Features smooth territorial transitions, an epoch timeline slider, and AI-generated historical narratives powered by Claude.",
         "tags": ["d3.js", "history", "visualization", "AI"]
     },
@@ -43,6 +45,7 @@
         "year": 2025,
         "image": "images/taxonomy.svg",
         "github": "https://github.com/agrabowski5/TaxonomyViewing",
+        "website": "https://agrabowski5.github.io/TaxonomyViewing/",
         "description": "Life Cycle Assessment taxonomy builder integrating Ecoinvent, USLCI, BAFU, Exiobase, and GABI databases. Features interactive tree construction, fuzzy cross-database mapping, and import/export.",
         "tags": ["LCA", "react", "data", "sustainability"]
     },
@@ -50,6 +53,7 @@
         "title": "Interconnection Queue Simulation",
         "year": 2025,
         "image": "images/interconnection.svg",
+        "github": "https://github.com/agrabowski5/InterconnectionQueue",
         "description": "Game-theoretic simulation engine for electrical grid interconnection queue analysis. Uses Monte Carlo methods, Nash equilibrium computation, and interactive Streamlit dashboards.",
         "tags": ["game theory", "energy", "python", "simulation"]
     },
@@ -57,6 +61,8 @@
         "title": "Sky's Big Green Flight",
         "year": 2025,
         "image": "images/childrens-book.svg",
+        "github": "https://github.com/agrabowski5/SAF_ChildrensBook",
+        "website": "https://agrabowski5.github.io/SAF_ChildrensBook/",
         "description": "Interactive children's storybook about Sustainable Aviation Fuel and green aviation. Features animated parchment-styled pages with a responsive, touch-friendly narrative experience.",
         "tags": ["education", "react", "storytelling", "sustainability"]
     },
@@ -64,6 +70,7 @@
         "title": "Climate Job Scanner",
         "year": 2025,
         "image": "images/job-hunter.svg",
+        "github": "https://github.com/agrabowski5/JobHuntingBot",
         "description": "Automated scraper targeting climate and energy investing companies, delivering daily HTML email reports. Scrapes Crunchbase, climate job boards, and investor career pages.",
         "tags": ["automation", "python", "web scraping"]
     },
@@ -97,6 +104,7 @@
         "year": 2024,
         "image": "images/d20.svg",
         "github": "https://github.com/agrabowski5/DungeonsandDragons",
+        "website": "https://agrabowski5.github.io/DungeonsandDragons/",
         "description": "Web app for creating and managing custom Dungeons & Dragons homebrew content with Firebase-backed persistent storage.",
         "tags": ["gaming", "firebase", "vite"]
     },
