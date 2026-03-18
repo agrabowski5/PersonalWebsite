@@ -29,8 +29,8 @@
 </script>
 
 <svelte:head>
-  <title>Contact | Alex Grabowski</title>
-  <meta name="description" content="Get in touch with Alex Grabowski to discuss sustainable economics, market design, and mechanism design projects." />
+  <title>Contact | Andrew Grabowski</title>
+  <meta name="description" content="Get in touch with Andrew Grabowski to discuss sustainable economics, market design, and mechanism design projects." />
 </svelte:head>
 
 <div class="contact-container">
